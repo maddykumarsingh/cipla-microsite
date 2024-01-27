@@ -156,3 +156,31 @@ body, html {
         max-width: 70px;
     }
 }
+
+
+/*------------style2 space----------- */
+
+/*------------style3 space----------- */
+
+#textimagetopright {
+    position: absolute;
+    top: 50px;
+    left: 170px;
+    transform: translate(-50%, -50%);
+    max-width: 300px;
+    margin-right: 20%;
+}
+
+#texttopright {
+    position: absolute;
+    top: 100px;
+    left: 150px;
+    transform: translateX(-50%);
+    text-align: right;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
+
+
+
