@@ -27,3 +27,24 @@ body, html {
     right: 0;
     margin: 2%; /* Adjust margin as needed */
 }
+
+#centered-text {
+    position: absolute;
+    top: 15%; /* Adjust the top value to center it at the top */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white; /* Set text color as needed */
+    font-family: 'Poppins', sans-serif; /* Use your preferred font */
+}
+
+#centered-text h4 {
+    font-size: 35px; /* Adjust font size as needed */
+    font-weight: 500; /* Adjust font weight as needed */
+}
+
+#centered-text h6 {
+    font-size: 50px; /* Adjust font size as needed */
+    font-weight: bold; /* Make it bold */
+    
+}
