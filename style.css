@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+}
+
+#background-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#backgroundimage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#imagescipla {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 2%; /* Adjust margin as needed */
+}
