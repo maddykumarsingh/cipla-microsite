@@ -184,3 +184,23 @@ body, html {
 
 
 
+#image-container {
+    position: absolute;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-top: 40px; /* Adjust margin as needed */
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+}
+
+.image {
+    margin-right: 10px;
+}
+
+.image img {
+    max-width: 100%;
+    height: auto;
+}
