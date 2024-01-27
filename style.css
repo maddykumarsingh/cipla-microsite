@@ -26,6 +26,7 @@ body, html {
     top: 0;
     right: 0;
     margin: 2%;
+    max-width: 100%; /* Make the logo responsive */
 }
 
 #centered-text {
@@ -43,6 +44,7 @@ body, html {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    max-width: 100%; /* Make the centered image responsive */
 }
 
 #centered-text h4 {
@@ -57,22 +59,48 @@ body, html {
 
 #name-input,
 #passcode-input {
+    position: absolute;
+    border-radius: 10%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 7%;
     padding: 10px;
-    margin: 10px;
-    width: 200px;
+    width: 80%; /* Adjust the input fields width for better responsiveness */
+    max-width: 250px;
     text-align: center;
+    z-index: 1;
+}
+
+#passcode-input {
+    top: 57%;
 }
 
 #login-button {
     position: absolute;
-    top: 60%; /* Adjust the top value to position the button below centered-textimage */
+    font-size: 14px;
+    border-radius: 10%;
+    top: 63%;
     left: 50%;
+    margin-top: 6%;
     transform: translateX(-50%);
     padding: 10px;
-    background-color: rgb(0, 132, 255);
+    width: 80%; /* Adjust the button width for better responsiveness */
+    max-width: 250px;
+    background-color: rgb(0, 110, 255);
     color: white;
     border: none;
     cursor: pointer;
-    border-radius: 10%;
-    font-size: 20px;
+    z-index: 1;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 768px) {
+    #centered-text h4 {
+        font-size: 25px;
+    }
+
+    #centered-text h6 {
+        font-size: 40px;
+    }
 }
