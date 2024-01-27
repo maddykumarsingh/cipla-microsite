@@ -1,0 +1,186 @@
+/* Common styles for all screen sizes */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+}
+
+#background-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#backgroundimage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#imagescipla {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 2%;
+    max-width: 100%;
+}
+
+#centered-text {
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+#centered-textimage {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+}
+
+#centered-textimage img {
+    width: 450px;
+    height: auto;
+}
+
+#centered-text h4 {
+    font-size: 35px;
+    font-weight: 500;
+}
+
+#centered-text h6 {
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#name-input,
+#passcode-input {
+    position: absolute;
+    border-radius: 10%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-top: 7%;
+    padding: 10px;
+    width: 80%;
+    max-width: 250px;
+    text-align: center;
+    z-index: 1;
+    border: 1px;
+}
+
+#passcode-input {
+    top: 57%;
+}
+
+#login-button {
+    position: absolute;
+    font-size: 14px;
+    border-radius: 10%;
+    top: 63%;
+    left: 50%;
+    margin-top: 6%;
+    transform: translateX(-50%);
+    padding: 10px;
+    width: 80%;
+    max-width: 250px;
+    background-color: rgb(0, 110, 255);
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 1200px) {
+    #centered-text h4 {
+        font-size: 30px;
+    }
+
+    #centered-text h6 {
+        font-size: 45px;
+    }
+}
+
+@media (max-width: 768px) {
+    #centered-text h4 {
+        font-size: 25px;
+    }
+
+    #centered-text h6 {
+        font-size: 40px;
+    }
+
+    #name-input,
+    #passcode-input,
+    #login-button {
+        width: 90%;
+    }
+}
+
+@media (max-width: 477px) {
+    #centered-text h4 {
+        font-size: 14px;
+    }
+
+    #centered-text h6 {
+        font-size: 30px;
+    }
+
+    #centered-textimage img {
+        width: 260px;
+        height: auto;
+    }
+
+    
+    #name-input,
+    #passcode-input,
+    #login-button {
+        width: 100%;
+    }
+    #imagescipla {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 2%;
+        max-width: 70px;
+    }
+}
+
+
+/*------------style2 space----------- */
+
+/*------------style3 space----------- */
+
+#textimagetopright {
+    position: absolute;
+    top: 50px;
+    left: 170px;
+    transform: translate(-50%, -50%);
+    max-width: 300px;
+    margin-right: 20%;
+}
+
+#texttopright {
+    position: absolute;
+    top: 100px;
+    left: 150px;
+    transform: translateX(-50%);
+    text-align: right;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
+
+
+
