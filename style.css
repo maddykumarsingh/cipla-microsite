@@ -162,6 +162,7 @@ body, html {
 
 /*------------style3 space----------- */
 
+
 #textimagetopright {
     position: absolute;
     top: 50px;
@@ -189,8 +190,8 @@ body, html {
     display: flex;
     overflow-x: auto;
     white-space: nowrap;
-    margin-top: 40px; /* Adjust margin as needed */
-    top: 40%;
+    margin-top: 65px; /* Adjust margin as needed */
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 100%;
@@ -200,7 +201,38 @@ body, html {
     margin-right: 10px;
 }
 
+
+
 .image img {
-    max-width: 100%;
-    height: auto;
-}
+   
+    width: 300px;
+    height: 300px;
+    scroll-snap-align: start;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  
+
+  #scrollButtonr {
+    position: fixed;
+    bottom: 150px;
+    right: 710px;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #fff;
+    border-radius: 100%;
+    cursor: pointer;
+  }
+
+  #scrollButtonl {
+    position: fixed;
+    bottom: 150px;
+    right: 650px;
+    padding: 10px;
+    background-color: #ffffff;
+    color: #fff;
+    border-radius: 100%;
+    cursor: pointer;
+  }
+
