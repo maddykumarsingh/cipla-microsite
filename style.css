@@ -323,35 +323,34 @@ body, html {
   }
 
   
-#buttonid {
+  #buttonid {
     position: absolute;
     display: flex;
     overflow-x: auto;
     white-space: nowrap;
     margin-top: 65px; /* Adjust margin as needed */
-    top: 65%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 100%;
-   
 }
 
-.buttonid {
-    margin-right: 10px;
-    padding: 10%;
+.b {
+    margin-right: 10px; /* Add space between each button */
 }
 
+#buttonid input {
+    border-radius: 100px;
+}
 
-
-.buttonid b {
-   
+#buttonid input.b {
     width: 250px;
-    height: 250px;
+    height: 60px;
     scroll-snap-align: start;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
+}
 
-  }
 
 
 
