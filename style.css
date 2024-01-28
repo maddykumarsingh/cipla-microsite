@@ -280,3 +280,117 @@ body, html {
         transition: transform 0.3s ease-in-out;
     }
 }
+
+/*--------------------style4--------------- */
+
+#texttoprightpage4 {
+    position: absolute;
+    top: 100px;
+    left: 104px;
+    transform: translateX(-50%);
+    text-align: right;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
+
+
+#image-container-page4 {
+    position: absolute;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-top: 65px; /* Adjust margin as needed */
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+}
+
+.images {
+    margin-right: 10px;
+}
+
+
+
+.images img {
+   
+    width: 250px;
+    height: 250px;
+    scroll-snap-align: start;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  
+#buttonid {
+    position: absolute;
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-top: 65px; /* Adjust margin as needed */
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+   
+}
+
+.buttonid {
+    margin-right: 10px;
+}
+
+
+
+.buttonid b {
+   
+    width: 250px;
+    height: 250px;
+    scroll-snap-align: start;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+  }
+
+
+
+  /* Responsive styles for smaller screens (e.g., tablets) */
+@media only screen and (max-width: 768px) {
+    #texttopright {
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+    }
+
+    #image-container {
+        margin-top: 20px;
+    }
+
+    #scrollButtonr,
+    #scrollButtonl {
+        bottom: 20px;
+    }
+}
+
+/* Responsive styles for even smaller screens (e.g., mobile phones) */
+@media only screen and (max-width: 480px) {
+    #texttoprightpage4 {
+        top: 100px;
+        left: 23%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    #image-container-page4 {
+        margin-top: 10px;
+    }
+
+    
+
+    .images img {
+        width: 135px;
+        height: 190px;
+        scroll-snap-align: start;
+        cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+    }
+}
