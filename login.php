@@ -7,7 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
-    <style>
+<link href="./dist/css/tailwind.css" rel="stylesheet">
+   <style>
         body {
             background: url('./images/lakes.jpg');
             background-size: cover;
@@ -18,6 +19,7 @@
             margin: 0;
             padding: 0;
             font-family: 'Open Sans', sans-serif;
+            letter-spacing: 1px;
         }
 
         header {
@@ -45,7 +47,7 @@
         }
 
         .heading-first{
-            font-size: 4rem;
+            font-size: 5rem;
             margin: 0;
         }
 
@@ -57,7 +59,7 @@
 
         .form-input {
             padding: 5px;
-            width: 70%;
+            width: 100%;
             text-align: center;
             margin: 5px 0;
             border: 0;
@@ -83,6 +85,9 @@
             flex-direction: column; 
             justify-content: center; 
             align-items: center;
+            width: 50%;
+            padding: 5px;
+            border-radius: 5px;
         }
 
 
@@ -102,7 +107,7 @@
             }
 
             .form-input {
-                width: 100%;
+                width: 80%;
             }
 
             form{
@@ -110,7 +115,7 @@
             }
 
             .header-logo{
-                width: 10%;
+                width: 18%;
             }
         }
 
@@ -124,23 +129,23 @@
 </head>
 <body>
     <header>
-         <img class="header-logo" src="./images/logo.png" alt="">
+         <img class="header-logo" src="./dist/images/logo.png" alt="">
     </header>
     <main>
          <div id="title-container">
             <h3 class="heading-third" >You are born to do great things</h3>
-            <h1 class="heading-first" style="">Welcome to HR Offsite 2024</h1>
+            <h1 class="heading-first">Welcome to HR Offsite 2024</h1>
          </div>
 
          <div style="
          display: flex;
          justify-content: center;">
-            <div style="text-transform: uppercase; font-weight: bold; background-color: #ffd200; width: max-content; padding: 2px; font-size: x-large;">
+            <div style="text-transform: uppercase; letter-spacing: 3px; font-weight: bold; background-color: #ffd200; width: max-content; padding: 8px 10px; font-size: x-large;">
                 #beyondthehorizon
             </div>
          </div>
 
-         <div style="display: flex; justify-content: center; align-items: center; margin-top: 100px;">
+         <div class="flex justify-center items-center mt-20 space-y-6">
             <form  action="">
                   <div>
                      <input class="form-input" type="text" placeholder="Enter Name">
@@ -148,9 +153,9 @@
                   <div>
                      <input class="form-input" type="text" placeholder="Enter Passcode">
                   </div>
-                  <div>
-                     <button id="login-button">
-                         <span style="text-transform: uppercase;">Login</span> <span>to let your great unfold</span>
+                  <div >
+                     <button class="hover:scale-105 cursor-pointer"  id="login-button">
+                         <span style="text-transform: uppercase;">Login</span> <span style="font-size:small;">to let your great unfold</span>
                      </button>
                   </div>
             </form>
