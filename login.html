@@ -12,10 +12,44 @@
             width: 100vw;
             height: 100vh;
             background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
         }
+
+        header {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: end;
+            align-items: center;
+            width: 100%;
+            height: 20%;
+        }
+
+        .header-logo {
+            width: 7.5%;
+            margin-right: 25px;
+        }
+
+        @media only screen and (max-width: 767px){
+            header {
+                 height: 10%;
+            }
+
+            .header-logo{
+                width: 10%;
+            }
+        }
+
+    
+
+
+
     </style>
 </head>
 <body>
+    <header>
+         <img class="header-logo" src="./images/logo.png" alt="">
+    </header>
     
 </body>
 </html>
