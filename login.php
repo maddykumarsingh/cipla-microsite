@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once('./config/database.php');
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
     $email = $_POST['email'];
@@ -30,13 +29,77 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
 }
-
-
 ?>
 
+<html>
+<head>
+    <title>Welcome to the website</title>
+    <script src="https://cdn.tailwindcss.com">
+       
+    </script>
+    <link href="./dist/css/tailwind.css" rel="stylesheet">
+     
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .background-image {
+            background-image: url('./dist/images/LoginBG.png'); /* Replace with the actual path to your image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .top-right {
+            text-align: right;
+            margin: 20px;
+        }
 
 
-<!DOCTYPE html>
+    </style>
+</head>
+<body>
+    <div class="background-image">
+        <div class="top-right text-white text-5xl font-extrabold justify-end mr-10 ">Cipla</div>
+        <div class="flex text-4xl font-medium md:text-5xl sm:text-4xl p-2 font-arial text-white justify-center ">You are born to do great things</div>
+       
+        <div class="flex flex-row text-8xl  lg:text-8xl sm:text-xl sm:flex-col  p-4 font-arial text-white justify-center items-center">
+                <div class="flex">Welcome</div>
+                <div class="flex">to HR Offsite 2024</div>
+        </div>
+        
+        <div class="flex p-4 justify-center mb-4">
+            <div class="flex  bg-yellow-400 h-12 items-center text-black text-5xl md:text-5xl sm:text-4xl font-arial_black p-8 mb-8">
+                #BEYONDTHEHORIZON
+            </div>
+        </div>
+        <form method="post" action="login.php" class="flex flex-col">
+            <div class=" flex flex-col">
+                <div class="flex justify-center m-2">
+                    <input type="text" name="email" class="flex p-4 w-[400px] rounded-lg text-lg text-center placeholder:text-2xl " placeholder="Enter Email">
+                </div>
+                <div class="flex p-4 w- justify-center  m-2">
+                    <input type="password" name="password" class="p-4 w-[400px] rounded-lg text-lg text-center placeholder:text-2xl " placeholder="Enter Password">
+                </div>
+                <div class="flex justify-center m-2">
+                    <button class=" flex flex-col font-semibold bg-blue-900 p-2 px-4 text-white text-xl rounded-xl justify-center items-center">
+                        <p class="text-3xl font-arial font-thin">LOGIN</p>
+                        <p class="font-normal font-arial px-4"> to let your greatness unfold</p>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -172,7 +235,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <main>
         <div class="grid grid-cols-1 gap-10 w-full m-2 justify-center">
             <div id="title-container">
-               <div class="heading-third justify-center" >You are born to do great things</div>
+               <div class="heading-third justify-center font-thin text-8xl" >You are born to do great things</div>
                <div class="heading-first">Welcome to HR Offsite 2024</div>
             </div>
             <div class="flex justify-center">
@@ -200,4 +263,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
      </main>
 </body>
-</html>
+</html> -->
