@@ -53,6 +53,9 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cipla Mircosite | Dashboard</title>
     <link href="./dist/css/tailwind.css" rel="stylesheet">
+     <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <style>
         body {
             background-image: url('dist/images/dashboard-background.png');
@@ -83,7 +86,7 @@ $conn->close();
                 <input type="text" placeholder="Your Last Name">
             </div>
         </div>
-        <div>
+        <section>
             <h6 class="uppercase">Meet your team</h6>
             <div class="flex space-x-10 justify-around my-10">
                 <!-- Repeat the following team member block for each team member -->
@@ -100,10 +103,50 @@ $conn->close();
                <?php endforeach; ?>
             </div>
 
-            <div>
-        
-    </div>
-        </div>
+       
+        </section>
+
+        <section>
+            <h6>Meet your Team Family Member</h6>
+            <div class="carousel-container">
+                    <div>
+                      <div>
+                          <img width="20%" class="w-full h-full object-cover" src="./dist/images/avatar.jpg" alt="Team Member's Image">
+                      </div>
+                      <span>Team Member Name</span>
+                    </div>
+                    <div>
+                      <div>
+                          <img width="20%" class="w-full h-full object-cover" src="./dist/images/avatar.jpg" alt="Team Member's Image">
+                      </div>
+                      <span>Team Member Name</span>
+                    </div>
+                    <div>
+                      <div>
+                          <img width="20%" class="w-full h-full object-cover" src="./dist/images/avatar.jpg" alt="Team Member's Image">
+                      </div>
+                      <span>Team Member Name</span>
+                    </div>
+            </div>
+
+        </section>
     </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script>
+        // Wait for the document to be ready
+        $(document).ready(function(){
+            // Initialize the Slick Carousel
+            $('.carousel-container').slick({
+                dots: true, // Display dots for navigation
+                infinite: true,
+                speed: 500,
+                slidesToShow: 1,
+                slidesToScroll: 1
+            });
+        });
+    </script>
 </body>
 </html>
