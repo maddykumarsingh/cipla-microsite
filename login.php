@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <link href="./dist/css/tailwind.css" rel="stylesheet">
    <style>
         body {
-            background: url('./dist/images/lakes.jpg');
+            background: url('./dist/images/LoginBG.png');
             background-size: cover;
             background-position-y: bottom;
             width: 100vw;
@@ -170,37 +170,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
          <img class="header-logo" src="./dist/images/logo.png" alt="">
     </header>
     <main>
-         <div id="title-container">
-            <h3 class="heading-third" >You are born to do great things</h3>
-            <h1 class="heading-first">Welcome to HR Offsite 2024</h1>
-         </div>
-
-         <div style="
-         display: flex;
-         justify-content: center;">
-            <div style="text-transform: uppercase; letter-spacing: 3px; font-weight: bold; background-color: #ffd200; width: max-content; padding: 8px 10px; font-size: x-large;">
-                #beyondthehorizon
+        <div class="grid grid-cols-1 gap-10 w-full m-2 justify-center">
+            <div id="title-container">
+               <div class="heading-third justify-center" >You are born to do great things</div>
+               <div class="heading-first">Welcome to HR Offsite 2024</div>
             </div>
-         </div>
+            <div class="flex justify-center">
+                <div style="text-transform: uppercase; letter-spacing: 3px; font-weight: bold; background-color: #ffd200; width: max-content; padding: 8px 10px; font-size: x-large;">
+                    #beyondthehorizon
+                </div>
+            </div>
 
-         <div class="flex justify-center items-center mt-20 space-y-6">
-            <form method="post" action="login.php">
-                  <div>
-                     <input class="form-input" name="email" type="text" placeholder="Enter Email">
-                  </div>
-                  <div>
-                     <input class="form-input" name="password" type="text" placeholder="Enter Passcode">
-                  </div>
-                  <div >
-                     <button class="hover:scale-105 cursor-pointer"  id="login-button">
-                         <span style="text-transform: uppercase;">Login</span> <span style="font-size:small;">to let your great unfold</span>
-                     </button>
-                  </div>
-            </form>
-         </div>
-        
-        
-
-    </main>
+   
+            <div class="flex justify-center content-center items-center mt-20 space-y-6">
+               <form method="post" action="login.php">
+                     <div class="flex w-full content-center items-center mt-10 space-y-6">
+                        <input class="form-input" name="email" type="text" placeholder="Enter Email">
+                     </div>
+                     <div>
+                        <input class="form-input" name="password" type="text" placeholder="Enter Passcode">
+                     </div>
+                     <div >
+                        <button class="hover:scale-105 cursor-pointer"  id="login-button">
+                            <span style="text-transform: uppercase;">Login</span> <span style="font-size:small;">to let your great unfold</span>
+                        </button>
+                     </div>
+               </form>
+            </div>
+        </div>
+     </main>
 </body>
 </html>
