@@ -1,3 +1,41 @@
+<?php
+session_start();
+include_once('./config/database.php');
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $query = "SELECT * FROM users WHERE email = ? AND password = ?";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("ss", $email, $password);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows == 1) {
+        $user_data = $result->fetch_assoc();
+        $_SESSION['user_id'] = $user_data['user_id'];
+
+        // Redirect to the dashboard or another page after successful login
+        header("Location: dashboard.php");
+
+        exit();
+    } else {
+        $error_message = "Invalid username/email or password. Please try again.";
+    }
+
+    // Close the prepared statement and the database connection
+    $stmt->close();
+    $conn->close();
+
+}
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -146,12 +184,12 @@
          </div>
 
          <div class="flex justify-center items-center mt-20 space-y-6">
-            <form  action="">
+            <form method="post" action="login.php">
                   <div>
-                     <input class="form-input" type="text" placeholder="Enter Name">
+                     <input class="form-input" name="email" type="text" placeholder="Enter Email">
                   </div>
                   <div>
-                     <input class="form-input" type="text" placeholder="Enter Passcode">
+                     <input class="form-input" name="password" type="text" placeholder="Enter Passcode">
                   </div>
                   <div >
                      <button class="hover:scale-105 cursor-pointer"  id="login-button">
