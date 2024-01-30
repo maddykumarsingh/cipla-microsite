@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <link href="./dist/css/tailwind.css" rel="stylesheet">
    <style>
         body {
-            background: url('./images/lakes.jpg');
+            background: url('./dist/images/lakes.jpg');
             background-size: cover;
             background-position-y: bottom;
             width: 100vw;
