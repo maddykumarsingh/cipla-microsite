@@ -73,11 +73,6 @@ while ($stmt->fetch()) {
 
 // Close the statement
 $stmt->close();
-
-
-
-
-
 $conn->close();
 ?>
 
