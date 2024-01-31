@@ -283,6 +283,12 @@ if (file) {
                     <div class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full">
                         <?=$user_data['nick_name']?>
                     </div>
+
+                    <div id="familyImage" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full">
+                                <input type="file" name="familyPic" class="file-input" id="fileInput" />
+                                <span class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span> 
+                                
+                        </div>
                   <?php else: ?>
 
                     <div class="relative">
