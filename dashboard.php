@@ -114,6 +114,20 @@ $conn->close();
 }
     </style>
 
+<style>
+        #carousel-container {
+            @apply relative w-3/5 mx-auto overflow-hidden;
+        }
+
+        #carousel {
+            @apply flex transition-transform duration-500 ease-in-out;
+        }
+
+        .carousel-item {
+            @apply min-w-full;
+        }
+</style>
+
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     var imageContainer = document.getElementById('imageContainer');
@@ -231,40 +245,46 @@ if (file) {
     <!-- Slick Carousel CSS -->
      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-    
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen w-screen bg-[#a5dfe6]">
-    <main class="background-image">
-        <div class="flex flex-row justify-between">
-            <div class="text-white text-5xl font-extrabold justify-start">
-                <div class="flex p-4 justify-center text-black font-semibold">
-                    <div class="flex font-arial_black  bg-yellow-400 h-8 items-center text-4xl md:text-3xl sm:text-3xl font-extrabold p-4">
-                        #BEYONDTHEHORIZON
-                    </div>
-                </div>
-            </div>
-            <div class="top-right text-white text-5xl font-extrabold justify-end">Cipla</div>
-        </div>
+<body class="h-screen w-screen background-image p-2 md:p-6">
+    <header class="w-full h-[20%] p-6 flex justify-between">
+       <div class="w-1/2 flex justify-start items-center">
+           <img class="lg:w-[50%] md:w-[80%]" src="./dist/images/tag.png" alt="">
+       </div>
+       <div class="w-1/2 flex justify-end space items-center">
+            <img class="mr-20 lg:w-[15%] md:w-[30%]"src="./dist/images/logo.png" alt="">
+       </div>
+    </header>
+    <main class=" w-full">
 
-        <section class="flex flex-row  gap-4 p-4">
-            <div class="flex flex-col justify-between flex-1">
-                <div class="flex text-justify text-2xl font-medium font-arial ml-4 text-white">
-                    Dear <?php echo isset($user_data['name']) ? $user_data['name'] : 'User'; ?> ,
-                    <br>
+    <section>
+
+    <div class="text-justify mx-4 text-xl text-white">
+                    <span class="my-2 block">Dear <?php echo isset($user_data['name']) ? $user_data['name'] : 'User'; ?> ,</span> 
+                    <p>
                     Welcome to Team <?php echo isset($user_data['team_id']) ? $user_data['team_id'] : '1'; ?>  where you will find your Team members.
                     <br>Complete Task 1 to help your colleagues get to know you better!
-                </div>
+                    </p>
+                    
+    </div>
+
+    </section>
+
+
+        <section class="flex flex-row  gap-4 p-4">
+                
                 
 
                 <div class="flex flex-row w-full mt-10 space-x-12" >
-                <div id="imageContainer" class="image-container relative flex flex-col items-center">
-                    <img src="./uploads/user/profile-image/<?=empty( $user_data['avatar'])?'dummy.webp':$user_data['avatar'] ?>" alt="Image" class="rounded-lg w-72 h-72">
+                  <div id="imageContainer" class="image-container relative flex flex-col items-center">
+                  <img src="./uploads/user/profile-image/<?=empty( $user_data['avatar'])?'dummy.webp':$user_data['avatar'] ?>" alt="Image" class="rounded-lg w-72 h-72">
                     <input type="file" id="profileImageInput" class="hidden" accept="image/*">
                     <div class="flex text-center justify-center h-14 w-56 cursor-pointer text-md items-center font-medium font-arial bg-white rounded-xl absolute bottom-0 left-1/2 transform -translate-x-1/2 -mt-4">
                         Upload your picture <img src="./dist/images/upload.png" class="ml-2 w-8"/>
                     </div>
                 </div>
-                <div class="flex flex-col justify-center gap-5 m-2">
+                    <div class="flex flex-col justify-center gap-5 m-2">
                         <input type="text" name="objective" class="flex p-2 text-center text-xl py-4  bg-white rounded-full w-[540px]" placeholder="One adjective that best describes you">
 
                         <div class="relative">
@@ -279,7 +299,7 @@ if (file) {
                         </div>
                     </div>
                 </div>
-              <div>
+            </div>
            
         </section>
 
@@ -303,60 +323,65 @@ if (file) {
 
         </section>
         <section>
-            <h6 class="flex text-justify text-3xl font-semibold m-2 ">
+            <h6 class="flex text-white text-justify text-3xl font-semibold m-2 ">
                 Meet Your Team member Family
             </h6>
+
+            <div id="carousel-container">
+    <div id="carousel" class="flex">
+
+    <?php foreach($familyPictures as $index => $picture): ?>
+      <div class="carousel-item">
+            <img class="h-2/3" src="./uploads/user/family-image/<?=$picture['file_name']?>" alt="Family Photo">
+        </div>
+     <?php endforeach; ?>
+      
+       
+        
+    </div>
+</div>
+
+<div class="flex justify-center mt-4">
+    <button id="prevBtn" class="bg-blue-500 text-white px-4 py-2 mr-2">Previous</button>
+    <button id="nextBtn" class="bg-blue-500 text-white px-4 py-2">Next</button>
+</div>
+
         </section>
-        <div class="carousel-container">
-        <?php foreach($familyPictures as $index => $picture): ?>
-                <div class="flex flex-row justify-center content-center">
-                    <div>
-                        <img class="h-2/3" src="./uploads/user/family-image/<?=$picture['file_name']?>" alt="Family Photo">
-                    </div>
-                    <span class="flex bg-white rounded-xl w-64 h-12 text-2xl shadow-xl text-center font-semibold justify-center py-2">
-                        <?=$picture['user_name']?>
-                    </span>
-                </div>
-        <?php endforeach; ?>
+       
 
 
-            </div>
+
+
+
     </main>
 
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        const $carousel = $('#carousel');
+        const $prevBtn = $('#prevBtn');
+        const $nextBtn = $('#nextBtn');
+
+        $prevBtn.on('click', function () {
+            $carousel.animate({ marginLeft: '+=100%' }, 500, function () {
+                // Move the last item to the front
+                $carousel.prepend($carousel.children().last());
+                $carousel.css('margin-left', 0);
+            });
+        });
+
+        $nextBtn.on('click', function () {
+            $carousel.animate({ marginLeft: '-=100%' }, 500, function () {
+                // Move the first item to the end
+                $carousel.append($carousel.children().first());
+                $carousel.css('margin-left', 0);
+            });
+        });
+    });
+</script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-    <script>
-        // Wait for the document to be ready
-        $(document).ready(function(){
-            // Initialize the Slick Carousel
-            $('.carousel-container').slick({
-  centerMode: true,
-  centerPadding: '80px',
-  slidesToShow: 3,
-  dots:true,
-  responsive: [
-    {
-      breakpoint: 768,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 2
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 1
-      }
-    }
-  ]
-}); });
-    </script>
 
 
 </body>
