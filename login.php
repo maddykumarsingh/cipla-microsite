@@ -72,10 +72,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         <form method="post" action="login.php" class="flex mt-14 space-x-2 lg:space-y-5 flex-col">
                 <div class="flex justify-center my-2 shadow-sm">
-                    <input type="text" name="email" class="p-3  lg:p-4 w-full lg:w-1/4 rounded-lg text-lg text-center placeholder:text-xl placeholder:font-light placeholder:text-gray-800 " placeholder="Enter Name">
+                    <input type="text" name="email" class="p-3 text-gray-800 lg:p-4 w-full lg:w-1/4 rounded-lg text-lg text-center placeholder:text-xl placeholder:font-light placeholder:text-gray-800 " placeholder="Enter Name">
                 </div>
                 <div class="flex justify-center my-2  shadow-sm">
-                    <input type="password" name="password" class="p-3  lg:p-4 w-full lg:w-1/4  rounded-lg text-lg text-center placeholder:text-xl placeholder:font-light placeholder:text-gray-800 " placeholder="Enter Passcode">
+                    <input type="password" name="password" class="p-3 text-gray-800  lg:p-4 w-full lg:w-1/4  rounded-lg text-lg text-center placeholder:text-xl placeholder:font-light placeholder:text-gray-800 " placeholder="Enter Passcode">
                 </div>
                 <div class="flex justify-center mt-10 lg:mt-1">
                     <button class=" flex flex-col font-semibold bg-blue-600 py-2 text-white text-xl rounded-xl justify-center items-center w-full lg:w-1/6 ">
