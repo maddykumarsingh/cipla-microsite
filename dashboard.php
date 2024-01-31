@@ -266,11 +266,16 @@ if (file) {
                 </div>
                     <div class="flex flex-col justify-center gap-5 m-2">
                         <input type="text" name="objective" class="flex p-2 text-center text-xl py-4  bg-white rounded-full w-[540px]" placeholder="One adjective that best describes you">
-                        <input type="text" name="nickName" class="flex p-2 text-center text-xl py-4 bg-white rounded-full w-[540px]" placeholder="The nickname by which people fondly refer to you">
-                        
+
+                        <div class="relative">
+                            <input type="text" name="nickName" class="flex p-2 text-center text-xl py-4 bg-white rounded-full w-[540px]" placeholder="The nickname by which people fondly refer to you">
+                            <div class="absolute top-0 right-0 p-1 mr-2 text-xs font-arial font-extralight text-gray-400">
+                              Max 20 letters
+                            </div>
+                      </div>                         
                         <div id="familyImage" class="file-input-container flex p-2 text-center text-xl py-4 bg-white rounded-full w-[540px]">
                                 <input type="file" name="familyPic" class="file-input" id="fileInput" />
-                               <span class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span></span> 
+                               <span class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span> 
                         </div>
                     </div>
                 </div>
@@ -283,7 +288,7 @@ if (file) {
             <h6 class="flex text-justify text-3xl font-semibold m-2 text-white ">
                 Meet Your Team
             </h6>
-            <button class="flex h-10 w-40 bg-blue-800 text-white justify-center text-center items-center  rounded-lg mr-2" onclick="window.location.href='./dashboard.php'">Submit</button>  
+            <button class="flex h-10 w-40 bg-blue-600 text-white justify-center text-center items-center  rounded-lg font-semibold mr-10" onclick="window.location.href='./dashboard.php'">Submit</button>  
             
           </div>
 
@@ -297,16 +302,10 @@ if (file) {
             </div>
 
         </section>
-             
-
-       
-
         <section>
             <h6 class="flex text-justify text-3xl font-semibold m-2 ">
                 Meet Your Team member Family
             </h6>
-              
-
         </section>
         <div class="carousel-container">
         <?php foreach($familyPictures as $index => $picture): ?>
