@@ -264,7 +264,7 @@ if (file) {
     <section class="mt-[5%] w-full  lg:mt-[4%] flex flex-col lg:flex-row">
           <div id="imageContainer" class="flex w-full lg:w-1/4 mx-auto flex-col lg:flex-col items-center">
                   <img class="w-[80%] rounded-2xl" src="./uploads/user/profile-image/<?=empty( $user_data['avatar'])?'dummy.webp':$user_data['avatar'] ?>" alt="Image" >
-                    <input type="file" id="profileImageInput" name="profileImage" class="hidden" accept="image/*">
+                    <input type="file" id="profileImageInput" name="profileImage" class="hidden" accept="image/jpeg">
 
                     <?php if( empty( $user_data['avatar']) ): ?>
                     <div class="flex relative items-center  text-black -top-4 justify-center cursor-pointer text-md font-arial bg-white w-[80%] rounded-full  ">
@@ -281,7 +281,7 @@ if (file) {
                     </div>
 
                     <div id="familyImage" class="p-3 py-5 text-center text-black border-2 border-white bg-gray-100 rounded-2xl w-full">
-                              <input type="file" name="familyPic" class="file-input" id="fileInput" onchange="displaySelectedFileName()" />
+                              <input type="file"  name="familyPic" class="file-input" id="fileInput" accept="image/jpeg" onchange="displaySelectedFileName()" />
                               <span id="showProfileName" class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span></span>
                     </div>
 
@@ -289,23 +289,24 @@ if (file) {
                   <?php else: ?>
 
                     <div class="relative">
-                            <input id="adjective" type="text" name="adjective" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="One adjective that best describes you">
+                            <input id="adjective" maxlength="20" type="text" name="adjective" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="One adjective that best describes you">
                             <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
                                   Max 20 letters
                               </span>
                       </div>
 
                       <div class="relative">
-                          <input id="nickName" type="text" name="nickName" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="The nickname by which people fondly refer to you">
+                          <input id="nickName" type="text" maxlength="20" name="nickName" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="The nickname by which people fondly refer to you">
                           <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
                               Max 20 letters
                           </span>
                       </div>                         
                         
                       <div id="familyImage" class="p-3 py-5 text-center text-black border-2 border-white bg-gray-100 rounded-2xl w-full">
-                              <input type="file" name="familyPic" class="file-input" id="fileInput" onchange="displaySelectedFileName()" />
+                              <input type="file" name="familyPic" class="file-input" id="fileInput" accept="image/jpeg" onchange="displaySelectedFileName()" />
                               <span id="showProfileName" class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span></span>
                        </div>
+                       <span></span>
 
                         <?php endif; ?>
                         <div class="lg:block ">
@@ -570,10 +571,30 @@ imgs.each(function(){
 
         // Get the file name and display it
         var fileName = selectedFile ? selectedFile.name : 'No file selected';
-        document.getElementById('showProfileName').innerText = fileName;
+        document.getElementById('showProfileName').innerText = fileName + ' Selected';
     }
 
+    
+
 </script>
+
+<script>
+    document.getElementById('fileInput').addEventListener('change', function () {
+        var fileInput = this;
+        var maxFileSize = 5 * 1024 * 1024; // 5 MB
+
+        if (fileInput.files.length > 0) {
+            var fileSize = fileInput.files[0].size;
+
+            if (fileSize > maxFileSize) {
+                alert('File size exceeds the limit of 5 MB. Please choose a smaller file.');
+                fileInput.value = ''; // Clear the input to prevent submission
+                document.getElementById('showProfileName').innerText = 'Upload a family picture';
+            }
+        }
+    });
+</script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
