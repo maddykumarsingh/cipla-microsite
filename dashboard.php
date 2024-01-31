@@ -138,7 +138,7 @@ $conn->close();
 
       if (file) {
         var reader = new FileReader();
-        uploadProfileImage( file )
+        // uploadProfileImage( file )
 
         reader.onload = function (e) {
           imageContainer.querySelector('img').src = e.target.result;
@@ -195,11 +195,6 @@ $conn->close();
       fileInput.click();
     });
 
-    fileInput.addEventListener('change', function () {
-        var file = fileInput.files[0];
-        if (file) 
-         uploadFamilyImage( file )
-    });
  
 });
 
@@ -265,10 +260,11 @@ if (file) {
         </div>
     </section>
 
+    <form id="profileForm" action="./update-profile.php" method="post" enctype="multipart/form-data">
     <section class="mt-[5%] w-full  lg:mt-[4%] flex flex-col lg:flex-row">
           <div id="imageContainer" class="flex w-full lg:w-1/4 mx-auto flex-col lg:flex-col items-center">
                   <img class="w-[80%] rounded-2xl" src="./uploads/user/profile-image/<?=empty( $user_data['avatar'])?'dummy.webp':$user_data['avatar'] ?>" alt="Image" >
-                    <input type="file" id="profileImageInput" class="hidden" accept="image/*">
+                    <input type="file" id="profileImageInput" name="profileImage" class="hidden" accept="image/jpeg">
 
                     <?php if( empty( $user_data['avatar']) ): ?>
                     <div class="flex relative items-center  text-black -top-4 justify-center cursor-pointer text-md font-arial bg-white w-[80%] rounded-full  ">
@@ -284,37 +280,38 @@ if (file) {
                         <?=$user_data['adjective'].'_'.$user_data['nick_name']?>
                     </div>
 
-                    <div id="familyImage" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full">
-                                <input type="file" name="familyPic" class="file-input" id="fileInput" />
-                                <span class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span> 
-                                
-                        </div>
+                    <div id="familyImage" class="p-3 py-5 text-center text-black border-2 border-white bg-gray-100 rounded-2xl w-full">
+                              <input type="file"  name="familyPic" class="file-input" id="fileInput" accept="image/jpeg" onchange="displaySelectedFileName()" />
+                              <span id="showProfileName" class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span></span>
+                    </div>
+
+
                   <?php else: ?>
 
                     <div class="relative">
-                            <input id="adjective" type="text" name="objective" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="One adjective that best describes you">
+                            <input id="adjective" maxlength="20" type="text" name="adjective" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="One adjective that best describes you">
                             <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
                                   Max 20 letters
                               </span>
                       </div>
 
                       <div class="relative">
-                          <input id="nickName" type="text" name="nickName" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="The nickname by which people fondly refer to you">
+                          <input id="nickName" type="text" maxlength="20" name="nickName" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="The nickname by which people fondly refer to you">
                           <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
                               Max 20 letters
                           </span>
                       </div>                         
                         
-                        <div id="familyImage" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full">
-                                <input type="file" name="familyPic" class="file-input" id="fileInput" />
-                                <span class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span> 
-                                
-                        </div>
+                      <div id="familyImage" class="p-3 py-5 text-center text-black border-2 border-white bg-gray-100 rounded-2xl w-full">
+                              <input type="file" name="familyPic" class="file-input" id="fileInput" accept="image/jpeg" onchange="displaySelectedFileName()" />
+                              <span id="showProfileName" class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span></span>
+                       </div>
+                       <span></span>
 
+                        <?php endif; ?>
                         <div class="lg:block ">
-                           <button onclick="update()" class="bg-blue-100 cursor-pointer text-black rounded z-50 px-7 py-2">Update</button>
+                           <button type="submit" class="bg-blue-100 cursor-pointer text-black rounded z-50 px-7 py-2">Update</button>
                         </div>
-                <?php endif; ?>
           </div>
 
           <div class="relative w-full -z-10 lg:w-1/4 hidden lg:block">
@@ -329,7 +326,7 @@ if (file) {
           </div>
        
     </section>
-
+    </form>
 
 
         
@@ -349,7 +346,15 @@ if (file) {
                 <?php foreach ($teamMembers as $index => $member): ?>
                     <div class="flex w-[250px] h-[300px] relative flex-col m-4 justify-center items-center scroll-m-1">
                         <img class="w-full" src="./uploads/user/profile-image/<?= empty($member['avatar'])? 'dummy.webp': $member['avatar']?>" class=" w-64 h-64">
-                        <span class=" absolute -bottom-4 p-2  bg-white text-black rounded-xl w-full text-center "><?php echo $member['name']; ?></span>
+                        <span class=" absolute -bottom-4 p-2  bg-white text-black rounded-xl w-full text-center ">
+                        <?php 
+        if (!empty($member['adjective']) && !empty($member['nick_name'])) {
+            echo $member['adjective'] . '_' . $member['nick_name'];
+        } else {
+            echo $member['name'];
+        }
+    ?>
+                        </span>
                     </div>
                 <?php endforeach; ?>
           </div>
@@ -363,25 +368,129 @@ if (file) {
             <img class="w-[7%] lg:w-[3%] mr-6" src="./dist/images/plus.png" alt=""> Meet your team's family
             </button>
             <!-- Accordion Content (Initially Hidden) -->
-            <div id="accordion2" class="accordion-content hidden">
+            <div id="accordion2" class="accordion-content ">
+              
             
+<style>
+  .wrap {
+  position: relative;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  padding: 0 60px;
+  -webkit-background-size: cover;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.wrap:after {
+  content:'';
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.5);
+}
+
+.slider {
+  position: relative;
+  z-index: 200;
+  padding: 0 0px;
+  margin: 5rem auto;
+  max-width: 800px;
+  width: 100%;
+}
+
+.slick-arrow {
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 50px;
+  line-height: 50px;
+  margin-top: -25px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  font-family: monospace;
+  font-size: 5rem;
+  z-index: 300;
+  outline: none;
+}
+
+.slick-prev {
+  left: -50px;
+  text-align: left;
+}
+
+.slick-next {
+  right: -50px;
+  text-align: right;
+}
+
+
+
+.item.slick-slide {
+  width: 400px;
+  height: 400px !important;
+  transition: transform .4s;
+  position: relative; 
+}
+
+.slick-slide:after {
+  content:'';
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,.5);
+  transition: transform .4s;
+}
+
+.item.slick-slide {
+  transform: scale(0.7)  translate(640px);
+}
+
+.item.slick-slide.slick-center + .slick-slide {
+  transform: scale(0.8) translate(-250px);
+  z-index: 10;
+}
+
+.item.slick-slide.slick-center + .slick-slide + .item.slick-slide {
+  transform: scale(0.7)  translate(-640px);
+  z-index: 5;
+}
+
+.item.slick-slide.slick-active {
+  transform: scale(0.8) translate(250px);
+}
+
+.item.slick-slide.slick-center {
+  /* margin: 0 -10%; */
+  transform: scale(1);
+  z-index: 30;
+}
+
+.slick-center:after {
+  opacity: 0;
+}
+</style>
+
             <!-- Carasouel  -->
-            <div id="carousel-container">
-    <div id="carousel" class="slick-carousel">
-        <?php foreach($familyPictures as $index => $picture): ?>
-            <div class="carousel-item">
-              <img src="./uploads/user/family-image/<?=$picture['file_name']?>" alt="<?=$picture['file_name']?>">
-            </div>
-        <?php endforeach; ?>
+            <div class="wrap">  
+  <div class="slider">
+    
+    <?php foreach( $familyPictures as $index => $picture ): ?>
+    <div class="item">
+      <img src="./uploads/user/family-image/<?=$picture['file_name']?>" alt="">
     </div>
-    <div class="flex justify-center mt-4">
-        <button id="prevBtn" class="text-white px-4 py-2 mr-2 cursor-pointer">
-           <img src="./dist/images/left.png" alt="">
-        </button>
-        <button id="nextBtn" class=" text-white px-4 py-2 cursor-pointer">
-        <img src="./dist/images/right.png" alt="">
-        </button>
-    </div>
+    <?php endforeach; ?>
+   
+    
+  </div>
 </div>
 <!-- Caraouel End -->
 
@@ -411,43 +520,81 @@ if (file) {
 
 <script>
     $(document).ready(function(){
-        $('#carousel').slick({
-            slidesToShow: 3,
-            slidesToScroll: 1,
-            prevArrow: $('#prevBtn'),
-            nextArrow: $('#nextBtn'),
-        });
+      $('.slider').slick({
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  arrows: true,
+  dots: false,
+  centerMode: true,
+  variableWidth: true,
+  infinite: true,
+  focusOnSelect: true,
+  cssEase: 'linear',
+  touchMove: true,
+  prevArrow:'<button class="slick-prev">  </button>',
+  nextArrow:'<button class="slick-next">  </button>',
+  
+          responsive: [                        
+              {
+                breakpoint: 576,
+                settings: {
+                  centerMode: true,
+                  variableWidth: true,
+                }
+              },
+          ]
+});
+
+
+var imgs = $('.slider img');
+imgs.each(function(){
+  var item = $(this).closest('.item');
+  item.css({
+    'background-image': 'url(' + $(this).attr('src') + ')', 
+    'background-position': 'center',            
+    '-webkit-background-size': 'cover',
+    'background-size': 'cover', 
+  });
+  $(this).hide();
+});
 
       
     });
 
-    function update(){
-      var adjective = document.getElementById('adjective').value;
-      var nickName = document.getElementById('nickName').value;
-      var userId = "<?=$user_id?>"
 
-    // Create FormData object
-    var formData = new FormData();
-    formData.append('adjective', adjective);
-    formData.append('nickName', nickName);
-    formData.append('user_id', userId);
+    function displaySelectedFileName() {
+        // Get the input element
+        var fileInput = document.getElementById('fileInput');
+        
+        // Get the selected file
+        var selectedFile = fileInput.files[0];
 
-    // Send form data to PHP script using fetch
-    fetch('save_data.php', {
-        method: 'POST',
-        body: formData
-    })
-    .then(response => response.json())
-    .then(data => {
-        // Handle the response from the PHP script
-        console.log(data);
-        window.location.reload();
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
+        // Get the file name and display it
+        var fileName = selectedFile ? selectedFile.name : 'No file selected';
+        document.getElementById('showProfileName').innerText = fileName + ' Selected';
     }
+
+    
+
 </script>
+
+<script>
+    document.getElementById('fileInput').addEventListener('change', function () {
+        var fileInput = this;
+        var maxFileSize = 5 * 1024 * 1024; // 5 MB
+
+        if (fileInput.files.length > 0) {
+            var fileSize = fileInput.files[0].size;
+
+            if (fileSize > maxFileSize) {
+                alert('File size exceeds the limit of 5 MB. Please choose a smaller file.');
+                fileInput.value = ''; // Clear the input to prevent submission
+                document.getElementById('showProfileName').innerText = 'Upload a family picture';
+            }
+        }
+    });
+</script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
