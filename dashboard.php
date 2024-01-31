@@ -280,6 +280,12 @@ if (file) {
                         <?=$user_data['adjective'].'_'.$user_data['nick_name']?>
                     </div>
 
+                    <div id="familyImage" class="p-3 py-5 text-center text-black border-2 border-white bg-gray-100 rounded-2xl w-full">
+                              <input type="file" name="familyPic" class="file-input" id="fileInput" onchange="displaySelectedFileName()" />
+                              <span id="showProfileName" class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span></span>
+                    </div>
+
+
                   <?php else: ?>
 
                     <div class="relative">
@@ -296,16 +302,15 @@ if (file) {
                           </span>
                       </div>                         
                         
-                        <div id="familyImage" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full">
-                                <input type="file" name="familyPic" class="file-input" id="fileInput" />
-                                <span id="showProfileName" class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span> 
-                                
-                        </div>
+                      <div id="familyImage" class="p-3 py-5 text-center text-black border-2 border-white bg-gray-100 rounded-2xl w-full">
+                              <input type="file" name="familyPic" class="file-input" id="fileInput" onchange="displaySelectedFileName()" />
+                              <span id="showProfileName" class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span></span>
+                       </div>
 
+                        <?php endif; ?>
                         <div class="lg:block ">
                            <button type="submit" class="bg-blue-100 cursor-pointer text-black rounded z-50 px-7 py-2">Update</button>
                         </div>
-                <?php endif; ?>
           </div>
 
           <div class="relative w-full -z-10 lg:w-1/4 hidden lg:block">
@@ -340,7 +345,15 @@ if (file) {
                 <?php foreach ($teamMembers as $index => $member): ?>
                     <div class="flex w-[250px] h-[300px] relative flex-col m-4 justify-center items-center scroll-m-1">
                         <img class="w-full" src="./uploads/user/profile-image/<?= empty($member['avatar'])? 'dummy.webp': $member['avatar']?>" class=" w-64 h-64">
-                        <span class=" absolute -bottom-4 p-2  bg-white text-black rounded-xl w-full text-center "><?php echo $member['name']; ?></span>
+                        <span class=" absolute -bottom-4 p-2  bg-white text-black rounded-xl w-full text-center ">
+                        <?php 
+        if (!empty($member['adjective']) && !empty($member['nick_name'])) {
+            echo $member['adjective'] . '_' . $member['nick_name'];
+        } else {
+            echo $member['name'];
+        }
+    ?>
+                        </span>
                     </div>
                 <?php endforeach; ?>
           </div>
@@ -547,6 +560,18 @@ imgs.each(function(){
       
     });
 
+
+    function displaySelectedFileName() {
+        // Get the input element
+        var fileInput = document.getElementById('fileInput');
+        
+        // Get the selected file
+        var selectedFile = fileInput.files[0];
+
+        // Get the file name and display it
+        var fileName = selectedFile ? selectedFile.name : 'No file selected';
+        document.getElementById('showProfileName').innerText = fileName;
+    }
 
 </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

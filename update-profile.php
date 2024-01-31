@@ -19,15 +19,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // ...
 
     $user_id = intval($_SESSION['user_id']);
-    $adjective = $_POST["adjective"];
-    $nick_name = $_POST["nickName"];
 
-    // Prepare and bind the SQL statement with placeholders for update
-    $sql = "UPDATE users SET adjective=?, nick_name=? WHERE user_id=?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssi", $adjective, $nick_name, $user_id);
-    $stmt->execute();
-    $stmt->close();
+
+    if (isset($_POST["adjective"]) && isset($_POST["nickName"])) {
+        // Get form data
+        $adjective = $_POST["adjective"];
+        $nick_name = $_POST["nickName"];
+    
+        // Prepare and bind the SQL statement with placeholders for update
+        $sql = "UPDATE users SET adjective=?, nick_name=? WHERE user_id=?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param("ssi", $adjective, $nick_name, $user_id);
+        $stmt->execute();
+        $stmt->close();
+    }
+    
+
 
     // Handle profile image upload
     if (!empty($_FILES['profileImage']['name'])) {
