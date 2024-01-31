@@ -261,8 +261,8 @@ if (file) {
     <section>
 
     <div class="text-justify mx-4 text-xl text-white">
-                    <span class="my-2 block">Dear <?php echo isset($user_data['name']) ? $user_data['name'] : 'User'; ?> ,</span> 
-                    <p>
+                    <span class="my-2 tracking-wide block text-2xl font-light">Dear <?php echo isset($user_data['name']) ? $user_data['name'] : 'User'; ?> ,</span> 
+                    <p class="text-xl tracking-wider">
                     Welcome to Team <?php echo isset($user_data['team_id']) ? $user_data['team_id'] : '1'; ?>  where you will find your Team members.
                     <br>Complete Task 1 to help your colleagues get to know you better!
                     </p>
@@ -311,14 +311,14 @@ if (file) {
                         </div>
                       </div>
                       <div class="relative w-full">
-    <span class="absolute top-0 left-0 mb-2 text-lg text-white opacity-10 p-2 rounded">Optimistic</span>
-    <span class="absolute top-1/4 left-1/4 mb-2 text-xl text-white opacity-30 p-2 rounded">Affectionate</span>
+    <span class="absolute top-0 left-0 mb-2 text-lg text-white opacity-50 p-2 rounded">Optimistic</span>
+    <span class="absolute top-1/4 left-1/4 mb-2 text-xl text-white opacity-50 p-2 rounded">Affectionate</span>
     <span class="absolute top-1/2 left-1/2 mb-2 text-2xl text-white opacity-50 p-2 rounded">Courageous</span>
     <span class="absolute top-3/4 left-3/4 mb-2 text-3xl text-white opacity-70 p-2 rounded">Brave</span>
     <span class="absolute top-0 right-0 mb-2 text-4xl text-white opacity-90 p-2 rounded">Adventurous</span>
     <span class="absolute top-1/4 right-1/4 mb-2 text-5xl text-white opacity-80 p-2 rounded">Dazzling</span>
     <span class="absolute top-1/2 right-1/2 mb-2 text-6xl text-white opacity-60 p-2 rounded">Beautiful</span>
-    <span class="absolute bottom-0 right-0 mb-2 text-7xl text-white opacity-40 p-2 rounded">Generous</span>
+    <span class="absolute bottom-0 right-0 mb-2 text-7xl text-white opacity-60 p-2 rounded">Generous</span>
 </div>
                 </div>
            
@@ -338,9 +338,9 @@ if (file) {
             <div id="accordion1" class="accordion-content hidden">
             <div class="flex flex-row sm:flex-wrap justify-center items-center my-10">
                 <?php foreach ($teamMembers as $index => $member): ?>
-                    <div class="flex flex-col m-4 justify-center items-center scroll-m-1">
-                        <img src="./uploads/user/profile-image/<?= empty($member['avatar'])? 'dummy.webp': $member['avatar']?>" class="rounded-lg w-64 h-64">
-                        <div class="flex bg-white rounded-xl w-64 h-12 text-2xl shadow-xl text-center font-semibold justify-center py-2"><?php echo $member['name']; ?></div>
+                    <div class="flex relative flex-col m-4 justify-center items-center scroll-m-1">
+                        <img src="./uploads/user/profile-image/<?= empty($member['avatar'])? 'dummy.webp': $member['avatar']?>" class=" w-64 h-64">
+                        <span class=" absolute -bottom-4 flex bg-white text-black rounded-xl w-64 h-12 text-2xl shadow-xl text-center font-semibold justify-center py-2"><?php echo $member['name']; ?></span>
                     </div>
                 <?php endforeach; ?>
           </div>
@@ -355,24 +355,27 @@ if (file) {
             </button>
             <!-- Accordion Content (Initially Hidden) -->
             <div id="accordion2" class="accordion-content hidden">
+            
+            <!-- Carasouel  -->
             <div id="carousel-container">
-    <div id="carousel" class="flex">
-
-    <?php foreach($familyPictures as $index => $picture): ?>
-      <div class="carousel-item">
-            <img class="h-2/3" src="./uploads/user/family-image/<?=$picture['file_name']?>" alt="Family Photo">
-        </div>
-     <?php endforeach; ?>
-     
-      
-       
-        
+    <div id="carousel" class="slick-carousel h-fit w-fit">
+        <?php foreach($familyPictures as $index => $picture): ?>
+            <div class="carousel-item">
+              <img src="./uploads/user/family-image/<?=$picture['file_name']?>" alt="<?=$picture['file_name']?>">
+            </div>
+        <?php endforeach; ?>
     </div>
     <div class="flex justify-center mt-4">
-    <button id="prevBtn" class="bg-blue-500 text-white px-4 py-2 mr-2">Previous</button>
-    <button id="nextBtn" class="bg-blue-500 text-white px-4 py-2">Next</button>
+        <button id="prevBtn" class="text-white px-4 py-2 mr-2 cursor-pointer">
+           <img src="./dist/images/left.png" alt="">
+        </button>
+        <button id="nextBtn" class=" text-white px-4 py-2 cursor-pointer">
+        <img src="./dist/images/right.png" alt="">
+        </button>
+    </div>
 </div>
-</div>
+<!-- Caraouel End -->
+
             </div>
         </div>
 
@@ -386,34 +389,23 @@ if (file) {
 
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function () {
-        const $carousel = $('#carousel');
-        const $prevBtn = $('#prevBtn');
-        const $nextBtn = $('#nextBtn');
 
-        $prevBtn.on('click', function () {
-            $carousel.animate({ marginLeft: '+=100%' }, 500, function () {
-                // Move the last item to the front
-                $carousel.prepend($carousel.children().last());
-                $carousel.css('margin-left', 0);
-            });
-        });
-
-        $nextBtn.on('click', function () {
-            $carousel.animate({ marginLeft: '-=100%' }, 500, function () {
-                // Move the first item to the end
-                $carousel.append($carousel.children().first());
-                $carousel.css('margin-left', 0);
-            });
-        });
-    });
-</script>
 <script>
     function toggleAccordion(accordionId) {
         const accordion = document.getElementById(accordionId);
         accordion.classList.toggle('hidden');
     }
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('#carousel').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            prevArrow: $('#prevBtn'),
+            nextArrow: $('#nextBtn'),
+        });
+    });
 </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
