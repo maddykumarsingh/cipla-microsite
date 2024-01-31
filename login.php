@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Cipla Mircostie | Login</title>
-       
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </script>
     <link href="./dist/css/tailwind.css" rel="stylesheet">
      
@@ -56,34 +56,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen w-screen background-image p-10">
-        <div class="flex justify-end items-end "><img class="w-[10%]" src="./dist/images/Cipla_White.png"/></div>
-        <div class="flex text-2xl font-medium md:text-5xl md:p-6  font-arial text-white justify-center ">You are born to do great things</div>
+<body class="h-screen w-screen background-image text-white p-10">
+        <div class="flex justify-end items-end "><img class="w-[24%] lg:w-[8%]" src="./dist/images/Cipla_White.png"/></div>
+        <div class="text-center mt-4 lg:text-[3rem]">You are born to do great things</div>
        
-        <div class="flex text-6xl lg:text-7xl md:6xl sm:6xl  font-arial text-white justify-center items-center">
+        <div class="text-3xl font-bold  my-3 tracking-wider lg:text-[5rem] lg:my-6 text-center">
                 Welcome to HR Offsite 2024 
         </div>
         
-        <div class="flex justify-center ">
-            <div class="flex  bg-yellow-400 h-12 items-center text-black text-5xl md:text-5xl sm:text-4xl font-arial_black p-8 mb-8">
+
+        <div class="flex justify-center my-2 translate-y-5 w-full ">
+            <div class="flex italic bg-yellow-400 lg:w-fit items-center text-gray-800 text-2xl lg:text-5xl font-arial_black p-2">
                 #BEYONDTHEHORIZON
             </div>
         </div>
-        <form method="post" action="login.php" class="flex flex-col">
-            <div class=" flex flex-col">
-                <div class="flex justify-center m-2 sm:m-4">
-                    <input type="text" name="email" class="flex p-4 md:w-1/3 sm:w-full rounded-lg text-lg text-center placeholder:text-2xl " placeholder="Enter Email">
+        <form method="post" action="login.php" class="flex mt-14 space-x-2 lg:space-y-5 flex-col">
+                <div class="flex justify-center my-2 shadow-sm">
+                    <input type="text" name="email" class="p-3  lg:p-4 w-full lg:w-1/4 rounded-lg text-lg text-center placeholder:text-xl placeholder:font-light placeholder:text-gray-800 " placeholder="Enter Name">
                 </div>
-                <div class="flex justify-center  m-2 sm:m-4">
-                    <input type="password" name="password" class="flex p-4 w-1/4 md:w-1/3 sm:w-1/2  rounded-lg text-lg text-center placeholder:text-2xl " placeholder="Enter Password">
+                <div class="flex justify-center my-2  shadow-sm">
+                    <input type="password" name="password" class="p-3  lg:p-4 w-full lg:w-1/4  rounded-lg text-lg text-center placeholder:text-xl placeholder:font-light placeholder:text-gray-800 " placeholder="Enter Passcode">
                 </div>
-                <div class="flex justify-center m-2 sm:m-4">
-                    <button class=" flex flex-col font-semibold bg-blue-600 p-2 px-4 text-white text-xl rounded-xl justify-center items-center w-1/3 sm:w-1/3 mt-4">
-                        <p class="text-3xl font-arial font-thin">LOGIN</p>
-                        <p class="font-normal font-arial px-4"> to let your greatness unfold</p>
+                <div class="flex justify-center mt-10 lg:mt-1">
+                    <button class=" flex flex-col font-semibold bg-blue-600 py-2 text-white text-xl rounded-xl justify-center items-center w-full lg:w-1/6 ">
+                        <p class="text-xl font-arial font-thin">LOGIN</p>
+                        <p class="font-normal font-arial text-sm"> to let your greatness unfold</p>
                     </button>
                 </div>
-            </div>
         </form>
     </div>
 </body>

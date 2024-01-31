@@ -80,6 +80,7 @@ $conn->close();
 <head>
     <title>Welcome to the website</title>
      <link rel="stylesheet" href="./dist/css/tailwind.css">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         .background-image {
             background-image: url('./dist/images/dashboard-background.jpg'); /* Replace with the actual path to your image */
@@ -271,7 +272,7 @@ if (file) {
                 
                 
 
-                  <div id="imageContainer" class="image-container relative flex flex-col items-center w-full">
+                  <div id="imageContainer" class="flex flex-col items-center w-full">
                   <img src="./uploads/user/profile-image/<?=empty( $user_data['avatar'])?'dummy.webp':$user_data['avatar'] ?>" alt="Image" class="rounded-lg w-72 h-72">
                     <input type="file" id="profileImageInput" class="hidden" accept="image/*">
 
@@ -281,18 +282,19 @@ if (file) {
                     </div>
                     <?php endif; ?>
                   </div>
+
                     <div class="flex flex-col justify-center gap-5 m-2">
 
                        <div class="relative">
 
-                         <input type="text" name="objective" class="flex p-2 text-center text-xl py-4  bg-white rounded-full w-[540px]" placeholder="One adjective that best describes you">
+                         <input type="text" name="objective" class="flex p-2 text-center text-black text-xl py-4  bg-white rounded-full w-[540px]" placeholder="One adjective that best describes you">
                          <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
                               Max 20 letters
                           </span>
                         </div>
 
                         <div class="relative">
-                            <input type="text" name="nickName" class="flex p-2 text-center text-xl py-4 bg-white rounded-full w-[540px]" placeholder="The nickname by which people fondly refer to you">
+                            <input type="text" name="nickName" class="flex p-2 text-center text-black text-xl py-4 bg-white rounded-full w-[540px]" placeholder="The nickname by which people fondly refer to you">
                             <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
                               Max 20 letters
                              </span>
