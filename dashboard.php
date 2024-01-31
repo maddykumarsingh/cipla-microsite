@@ -241,7 +241,7 @@ if (file) {
     <!-- Slick Carousel CSS -->
      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="h-screen w-screen background-image p-5 lg:p-10 text-white">
     <header class="w-full h-[20%] flex justify-between">
@@ -266,7 +266,7 @@ if (file) {
     </section>
 
     <section class="mt-[5%] w-full  lg:mt-[4%] flex flex-col lg:flex-row">
-          <div id="imageContainer" class="flex w-full lg:w-1/4 mx-auto flex-col lg:flex-row items-center">
+          <div id="imageContainer" class="flex w-full lg:w-1/4 mx-auto flex-col lg:flex-col items-center">
                   <img class="w-[80%] rounded-2xl" src="./uploads/user/profile-image/<?=empty( $user_data['avatar'])?'dummy.webp':$user_data['avatar'] ?>" alt="Image" >
                     <input type="file" id="profileImageInput" class="hidden" accept="image/*">
 
@@ -301,10 +301,8 @@ if (file) {
                         
                         <div id="familyImage" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full">
                                 <input type="file" name="familyPic" class="file-input" id="fileInput" />
-                               <span class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span> 
-                               <span class=" absolute text-xs  text-gray-400 bottom-2 right-[50%] font-arial font-bold ">
-                                    Format:jpeg. Max size 5 mb
-                                </span>
+                                <span class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span> 
+                                
                         </div>
 
                         <div class="hidden lg:block absolute -right-60 bottom-0">

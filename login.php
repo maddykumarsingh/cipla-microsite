@@ -54,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 20px;
         }
     </style>
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="h-screen w-screen background-image text-white p-10">
         <div class="flex justify-end items-end "><img class="w-[24%] lg:w-[8%]" src="./dist/images/Cipla_White.png"/></div>
