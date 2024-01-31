@@ -57,7 +57,7 @@ $conn->close();
             background-image: url('./dist/images/dashboardBG.png'); /* Replace with the actual path to your image */
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
+            background-repeat: repeat;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -86,7 +86,7 @@ $conn->close();
             <div class="top-right text-white text-5xl font-extrabold justify-end">Cipla</div>
         </div>
 
-        <div class="flex flex-row  gap-4 p-4">
+        <div class="flex flex-row gap-4 p-4">
             <div class="flex flex-col justify-between flex-1">
                 <div class="flex text-justify text-2xl font-medium font-arial ml-4">
                     Dear <?php echo isset($user_data['name']) ? $user_data['name'] : 'User'; ?> ,
@@ -96,7 +96,7 @@ $conn->close();
                 </div>
 
 
-                <div class="flex flex-row col-span-1 mt-10">
+                <div class="flex flex-row mt-10">
                     <div class="flex mr-1">
                         <img src="./dist/images/p1.webp" alt="Image" class="rounded-lg w-72 h-72">
                     </div>
@@ -107,7 +107,7 @@ $conn->close();
                     </div>
                 </div>
             </div>
-            <div class="flex overflow-y-visible">
+            <div class="flex overflow-y-visible ">
                 <img src="./dist/images/dashBoardBirds_Filled.png" alt="Image" class="rounded-lg w-200 justify-end items-end">
             </div>
         </div>
