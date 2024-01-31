@@ -258,7 +258,7 @@ if (file) {
 
                 <div class="flex flex-row w-full mt-10 space-x-12" >
                 <div id="imageContainer" class="image-container">
-                        <img src="./uploads/user/profile-image/<?= $user_data['avatar'] ?? 'dummy.webp' ?>" alt="Image" class="rounded-lg w-72 h-72">
+                        <img src="./uploads/user/profile-image/<?=empty( $user_data['avatar'])?'dummy.webp':$user_data['avatar'] ?>" alt="Image" class="rounded-lg w-72 h-72">
                         <input type="file" id="profileImageInput" class="hidden" accept="image/*">
                 </div>
                     <div class="flex flex-col justify-center gap-5 m-2">
