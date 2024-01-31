@@ -266,7 +266,7 @@ if (file) {
     </section>
 
     <section class="mt-[5%] w-full  lg:mt-[4%] flex flex-col lg:flex-row">
-          <div id="imageContainer" class="flex w-full lg:w-1/4 mx-auto flex-col lg:flex-row items-center">
+          <div id="imageContainer" class="flex w-full lg:w-1/4 mx-auto flex-col lg:flex-col items-center">
                   <img class="w-[80%] rounded-2xl" src="./uploads/user/profile-image/<?=empty( $user_data['avatar'])?'dummy.webp':$user_data['avatar'] ?>" alt="Image" >
                     <input type="file" id="profileImageInput" class="hidden" accept="image/*">
 
@@ -281,19 +281,25 @@ if (file) {
 
                   <?php if(!empty($user_data['nick_name']) ): ?>
                     <div class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full">
-                        Brave Nick
+                        <?=$user_data['nick_name']?>
                     </div>
+
+                    <div id="familyImage" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full">
+                                <input type="file" name="familyPic" class="file-input" id="fileInput" />
+                                <span class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span> 
+                                
+                        </div>
                   <?php else: ?>
 
                     <div class="relative">
-                            <input type="text" name="objective" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="One adjective that best describes you">
+                            <input id="adjective" type="text" name="objective" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="One adjective that best describes you">
                             <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
                                   Max 20 letters
                               </span>
                       </div>
 
                       <div class="relative">
-                          <input type="text" name="nickName" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="The nickname by which people fondly refer to you">
+                          <input id="nickName" type="text" name="nickName" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="The nickname by which people fondly refer to you">
                           <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
                               Max 20 letters
                           </span>
@@ -301,13 +307,11 @@ if (file) {
                         
                         <div id="familyImage" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full">
                                 <input type="file" name="familyPic" class="file-input" id="fileInput" />
-                               <span class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span> 
-                               <span class=" absolute text-xs  text-gray-400 bottom-2 right-[50%] font-arial font-bold ">
-                                    Format:jpeg. Max size 5 mb
-                                </span>
+                                <span class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span> 
+                                
                         </div>
 
-                        <div class="hidden lg:block absolute -right-60 bottom-0">
+                        <div class="lg:block ">
                            <button onclick="update()" class="bg-blue-100 cursor-pointer text-black rounded z-50 px-7 py-2">Update</button>
                         </div>
                 <?php endif; ?>
@@ -413,7 +417,36 @@ if (file) {
             prevArrow: $('#prevBtn'),
             nextArrow: $('#nextBtn'),
         });
+
+      
     });
+
+    function update(){
+      var adjective = document.getElementById('adjective').value;
+      var email = document.getElementById('nickName').value;
+      var userId = "<?=$user_id?>"
+
+    // Create FormData object
+    var formData = new FormData();
+    formData.append('adjective', name);
+    formData.append('nickName', email);
+    formData.append('user_id', userId);
+
+    // Send form data to PHP script using fetch
+    fetch('save_data.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle the response from the PHP script
+        console.log(data);
+        window.location.reload();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+    }
 </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
