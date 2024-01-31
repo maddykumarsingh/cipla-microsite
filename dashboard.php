@@ -87,7 +87,7 @@ $conn->close();
      <link rel="stylesheet" href="./dist/css/tailwind.css">
     <style>
         .background-image {
-            background-image: url('./dist/images/dashboardBG.png'); /* Replace with the actual path to your image */
+            background-image: url('./dist/images/dashboard-background.jpg'); /* Replace with the actual path to your image */
             background-size: cover;
             background-position: center;
             background-repeat: repeat;
@@ -248,7 +248,7 @@ if (file) {
 
         <section class="flex flex-row  gap-4 p-4">
             <div class="flex flex-col justify-between flex-1">
-                <div class="flex text-justify text-2xl font-medium font-arial ml-4">
+                <div class="flex text-justify text-2xl font-medium font-arial ml-4 text-white">
                     Dear <?php echo isset($user_data['name']) ? $user_data['name'] : 'User'; ?> ,
                     <br>
                     Welcome to Team <?php echo isset($user_data['team_id']) ? $user_data['team_id'] : '1'; ?>  where you will find your Team members.
@@ -257,9 +257,12 @@ if (file) {
                 
 
                 <div class="flex flex-row w-full mt-10 space-x-12" >
-                <div id="imageContainer" class="image-container">
-                        <img src="./uploads/user/profile-image/<?= $user_data['avatar'] ?? 'dummy.webp' ?>" alt="Image" class="rounded-lg w-72 h-72">
-                        <input type="file" id="profileImageInput" class="hidden" accept="image/*">
+                <div id="imageContainer" class="image-container relative flex flex-col items-center">
+                    <img src="./uploads/user/profile-image/<?= $user_data['avatar'] ?? 'dummy.webp' ?>" alt="Image" class="rounded-lg w-72 h-72">
+                    <input type="file" id="profileImageInput" class="hidden" accept="image/*">
+                    <div class="flex text-center justify-center h-14 w-56 cursor-pointer text-md items-center font-medium font-arial bg-white rounded-xl absolute bottom-0 left-1/2 transform -translate-x-1/2 -mt-4">
+                        Upload your picture <img src="./dist/images/upload.png" class="ml-2 w-8"/>
+                    </div>
                 </div>
                     <div class="flex flex-col justify-center gap-5 m-2">
                         <input type="text" name="objective" class="flex p-2 text-center text-xl py-4  bg-white rounded-full w-[540px]" placeholder="One adjective that best describes you">
@@ -267,7 +270,7 @@ if (file) {
                         
                         <div id="familyImage" class="file-input-container flex p-2 text-center text-xl py-4 bg-white rounded-full w-[540px]">
                                 <input type="file" name="familyPic" class="file-input" id="fileInput" />
-                               <span class="w-full text-center text-gray-400">Upload a family picture</span> 
+                               <span class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span></span> 
                         </div>
                     </div>
                 </div>
@@ -276,11 +279,15 @@ if (file) {
         </section>
 
         <section>
-            <h6 class="flex text-justify text-3xl font-semibold m-2 ">
+          <div class="flex flex-row justify-between">
+            <h6 class="flex text-justify text-3xl font-semibold m-2 text-white ">
                 Meet Your Team
             </h6>
+            <button class="flex h-10 w-40 bg-blue-800 text-white justify-center text-center items-center  rounded-lg mr-2" onclick="window.location.href='./dashboard.php'">Submit</button>  
+            
+          </div>
 
-            <div class="flex flex-row sm:flex-wrap justify-center items-center my-10">
+          <div class="flex flex-row sm:flex-wrap justify-center items-center my-10">
                 <?php foreach ($teamMembers as $index => $member): ?>
                     <div class="flex flex-col m-4 justify-center items-center scroll-m-1">
                         <img src="./uploads/user/profile-image/<?= empty($member['avatar'])? 'dummy.webp': $member['avatar']?>" class="rounded-lg w-64 h-64">
