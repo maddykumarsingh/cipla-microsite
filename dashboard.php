@@ -276,8 +276,8 @@ if (file) {
                     <input type="file" id="profileImageInput" class="hidden" accept="image/*">
 
                     <?php if( empty( $user_data['avatar']) ): ?>
-                    <div class="flex relative items-center  text-black -top-4 justify-center cursor-pointer text-md p-2  space-x-1 f font-arial bg-white w-[80%] rounded-full  ">
-                        <span>Upload your picture</span> <img class="rounded-full ml-5 w-[22%]" src="./dist/images/upload.png" class=""/>
+                    <div class="flex relative items-center  text-black -top-4 justify-center cursor-pointer text-md p-2  space-x-1 font-arial bg-white w-[80%] rounded-full  ">
+                        <span class="mr-4">Upload your picture</span> <img class="rounded-full  w-[18%]" src="./dist/images/upload.png" class=""/>
                     </div>
                     <?php endif; ?>
                   </div>
