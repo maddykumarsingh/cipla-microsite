@@ -241,7 +241,7 @@ if (file) {
     <!-- Slick Carousel CSS -->
      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
 <body class="h-screen w-screen background-image p-5 lg:p-10 text-white">
     <header class="w-full h-[20%] flex justify-between">
@@ -277,9 +277,15 @@ if (file) {
                     <?php endif; ?>
           </div>
 
-          <div class="flex flex-col lg:w-2/4 space-y-5 mt-10">
+          <div class="relative flex flex-col lg:w-2/4 space-y-5 mt-10">
 
-                      <div class="relative">
+                  <?php if(!empty($user_data['nick_name']) ): ?>
+                    <div class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full">
+                        Brave Nick
+                    </div>
+                  <?php else: ?>
+
+                    <div class="relative">
                             <input type="text" name="objective" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="One adjective that best describes you">
                             <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
                                   Max 20 letters
@@ -300,9 +306,14 @@ if (file) {
                                     Format:jpeg. Max size 5 mb
                                 </span>
                         </div>
+
+                        <div class="hidden lg:block absolute -right-60 bottom-0">
+                           <button onclick="update()" class="bg-blue-100 cursor-pointer text-black rounded z-50 px-7 py-2">Update</button>
+                        </div>
+                <?php endif; ?>
           </div>
 
-          <div class="relative w-full lg:w-1/4 hidden lg:block">
+          <div class="relative w-full -z-10 lg:w-1/4 hidden lg:block">
               <span class="absolute top-0 left-0 mb-2 text-lg text-white opacity-50 p-2 rounded">Optimistic</span>
               <span class="absolute top-1/4 left-1/4 mb-2 text-xl text-white opacity-50 p-2 rounded">Affectionate</span>
               <span class="absolute top-1/2 left-1/2 mb-2 text-2xl text-white opacity-50 p-2 rounded">Courageous</span>
@@ -319,23 +330,22 @@ if (file) {
 
         
 
-        <section class="">
     <!-- Accordion Container -->
-    <div class="rounded shadow p-4">
+        <section class="mt-5 text-2xl">
 
         <!-- Accordion Item 1 -->
         <div class="mb-4">
             <!-- Accordion Header -->
-            <button class="w-full text-[2rem] flex items-center space-x-4 text-white text-2xl text-left p-2" onclick="toggleAccordion('accordion1')">
-               <img class="w-[10%] mr-6" src="./dist/images/plus.png" alt=""> Meet Your Team
+            <button class="w-full flex items-center " onclick="toggleAccordion('accordion1')">
+               <img class="w-[7%] lg:w-[3%] mr-6" src="./dist/images/plus.png" alt=""> Meet Your Team
             </button>
             <!-- Accordion Content (Initially Hidden) -->
             <div id="accordion1" class="accordion-content hidden">
-            <div class="flex flex-row sm:flex-wrap justify-center items-center my-10">
+            <div class="flex flex-row flex-wrap justify-center items-center">
                 <?php foreach ($teamMembers as $index => $member): ?>
-                    <div class="flex relative flex-col m-4 justify-center items-center scroll-m-1">
-                        <img src="./uploads/user/profile-image/<?= empty($member['avatar'])? 'dummy.webp': $member['avatar']?>" class=" w-64 h-64">
-                        <span class=" absolute -bottom-4 flex bg-white text-black rounded-xl w-64 h-12 text-2xl shadow-xl text-center font-semibold justify-center py-2"><?php echo $member['name']; ?></span>
+                    <div class="flex w-[250px] h-[300px] relative flex-col m-4 justify-center items-center scroll-m-1">
+                        <img class="w-full" src="./uploads/user/profile-image/<?= empty($member['avatar'])? 'dummy.webp': $member['avatar']?>" class=" w-64 h-64">
+                        <span class=" absolute -bottom-4 p-2  bg-white text-black rounded-xl w-full text-center "><?php echo $member['name']; ?></span>
                     </div>
                 <?php endforeach; ?>
           </div>
@@ -343,10 +353,10 @@ if (file) {
         </div>
 
         <!-- Accordion Item 2 -->
-        <div class="mb-4">
+        <div class="mb-6">
             <!-- Accordion Header -->
-            <button class="w-full text-white flex items-center text-[2rem] text-left p-2" onclick="toggleAccordion('accordion2')">
-            <img class="w-[3%] mr-6" src="./dist/images/plus.png" alt=""> Meet your team members family
+            <button class="w-full flex items-center text-small " onclick="toggleAccordion('accordion2')">
+            <img class="w-[7%] lg:w-[3%] mr-6" src="./dist/images/plus.png" alt=""> Meet your team's family
             </button>
             <!-- Accordion Content (Initially Hidden) -->
             <div id="accordion2" class="accordion-content hidden">
@@ -376,9 +386,12 @@ if (file) {
 
         <!-- Add more accordion items as needed -->
 
-    </div>
         </section>
 
+
+        <section class="h-[5%]">
+
+        </section>
 
     </main>
 
