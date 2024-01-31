@@ -1,13 +1,8 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./**/*.php"],
+  content: ["./**/*.{html,js ,php}"],
   theme: {
-    extend: {
-      fontFamily: {
-      arial: ["Arial"],
-      arial_black: ["Arial Black"],
-      }
-    },
+    extend: {},
   },
   plugins: [],
 }
