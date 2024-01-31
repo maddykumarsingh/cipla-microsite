@@ -6,9 +6,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $query = "SELECT * FROM users WHERE email = ? AND password = ?";
+    $query = "SELECT * FROM users WHERE password = ?";
     $stmt = $conn->prepare($query);
-    $stmt->bind_param("ss", $email, $password);
+    $stmt->bind_param("s",$password);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -40,52 +40,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      
     <style>
         body, html {
-            height: 100%;
             margin: 0;
         }
-
         .background-image {
             background-image: url('./dist/images/login-min.gif'); /* Replace with the actual path to your image */
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
+            background-repeat: repeat;
         }
 
         .top-right {
             text-align: right;
             margin: 20px;
         }
-
-
     </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="background-image">
-        <div class="top-right text-white text-5xl font-extrabold justify-end mr-10 ">Cipla</div>
-        <div class="flex text-4xl font-medium md:text-5xl sm:text-4xl p-2 font-arial text-white justify-center ">You are born to do great things</div>
+<body class="h-screen w-screen background-image p-10">
+        <div class="flex justify-end items-end "><img class="w-[10%]" src="./dist/images/Cipla_White.png"/></div>
+        <div class="flex text-2xl font-medium md:text-5xl md:p-6  font-arial text-white justify-center ">You are born to do great things</div>
        
-        <div class="flex text-7xl  lg:text-7xl md:6xl sm:5xl p-4 font-arial text-white justify-center items-center">
-                <div class="flex">Welcome to HR Offsite 2024</div> 
+        <div class="flex text-6xl lg:text-7xl md:6xl sm:6xl  font-arial text-white justify-center items-center">
+                Welcome to HR Offsite 2024 
         </div>
         
-        <div class="flex p-4 justify-center mb-4">
+        <div class="flex justify-center ">
             <div class="flex  bg-yellow-400 h-12 items-center text-black text-5xl md:text-5xl sm:text-4xl font-arial_black p-8 mb-8">
                 #BEYONDTHEHORIZON
             </div>
         </div>
         <form method="post" action="login.php" class="flex flex-col">
             <div class=" flex flex-col">
-                <div class="flex justify-center m-2">
-                    <input type="text" name="email" class="flex p-4 w-[400px] rounded-lg text-lg text-center placeholder:text-2xl " placeholder="Enter Email">
+                <div class="flex justify-center m-2 sm:m-4">
+                    <input type="text" name="email" class="flex p-4 md:w-1/3 sm:w-full rounded-lg text-lg text-center placeholder:text-2xl " placeholder="Enter Email">
                 </div>
-                <div class="flex p-4 w- justify-center  m-2">
-                    <input type="password" name="password" class="p-4 w-[400px] rounded-lg text-lg text-center placeholder:text-2xl " placeholder="Enter Password">
+                <div class="flex justify-center  m-2 sm:m-4">
+                    <input type="password" name="password" class="flex p-4 w-1/4 md:w-1/3 sm:w-1/2  rounded-lg text-lg text-center placeholder:text-2xl " placeholder="Enter Password">
                 </div>
-                <div class="flex justify-center m-2">
-                    <button class=" flex flex-col font-semibold bg-blue-900 p-2 px-4 text-white text-xl rounded-xl justify-center items-center">
+                <div class="flex justify-center m-2 sm:m-4">
+                    <button class=" flex flex-col font-semibold bg-blue-600 p-2 px-4 text-white text-xl rounded-xl justify-center items-center w-1/3 sm:w-1/3 mt-4">
                         <p class="text-3xl font-arial font-thin">LOGIN</p>
                         <p class="font-normal font-arial px-4"> to let your greatness unfold</p>
                     </button>

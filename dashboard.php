@@ -73,11 +73,6 @@ while ($stmt->fetch()) {
 
 // Close the statement
 $stmt->close();
-
-
-
-
-
 $conn->close();
 ?>
 
@@ -87,10 +82,10 @@ $conn->close();
      <link rel="stylesheet" href="./dist/css/tailwind.css">
     <style>
         .background-image {
-            background-image: url('./dist/images/dashboardBG.png'); /* Replace with the actual path to your image */
+            background-image: url('./dist/images/dashboard-background.jpg'); /* Replace with the actual path to your image */
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
+            background-repeat: repeat;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -113,6 +108,20 @@ $conn->close();
   display: none;
 }
     </style>
+
+<style>
+        #carousel-container {
+            @apply relative w-3/5 mx-auto overflow-hidden;
+        }
+
+        #carousel {
+            @apply flex transition-transform duration-500 ease-in-out;
+        }
+
+        .carousel-item {
+            @apply min-w-full;
+        }
+</style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function () {
@@ -231,126 +240,170 @@ if (file) {
     <!-- Slick Carousel CSS -->
      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-    
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen w-screen bg-[#a5dfe6]">
-    <main class="background-image">
-        <div class="flex flex-row justify-between">
-            <div class="text-white text-5xl font-extrabold justify-start">
-                <div class="flex p-4 justify-center text-black font-semibold">
-                    <div class="flex font-arial_black  bg-yellow-400 h-8 items-center text-4xl md:text-3xl sm:text-3xl font-extrabold p-4">
-                        #BEYONDTHEHORIZON
-                    </div>
-                </div>
-            </div>
-            <div class="top-right text-white text-5xl font-extrabold justify-end">Cipla</div>
-        </div>
+<body class="h-screen w-screen background-image p-2 md:p-6 text-white">
+    <header class="w-full h-[20%] p-6 flex justify-between">
+       <div class="w-1/2 flex justify-start items-center">
+           <img class="lg:w-[50%] md:w-[80%]" src="./dist/images/tag.png" alt="">
+       </div>
+       <div class="w-1/2 flex justify-end space items-center">
+            <img class="mr-20 lg:w-[15%] md:w-[30%]"src="./dist/images/logo.png" alt="">
+       </div>
+    </header>
+    <main class=" w-full">
 
-        <section class="flex flex-row  gap-4 p-4">
-            <div class="flex flex-col justify-between flex-1">
-                <div class="flex text-justify text-2xl font-medium font-arial ml-4">
-                    Dear <?php echo isset($user_data['name']) ? $user_data['name'] : 'User'; ?> ,
-                    <br>
+    <section>
+
+    <div class="text-justify mx-4 text-xl text-white">
+                    <span class="my-2 tracking-wide block text-2xl font-light">Dear <?php echo isset($user_data['name']) ? $user_data['name'] : 'User'; ?> ,</span> 
+                    <p class="text-xl tracking-wider">
                     Welcome to Team <?php echo isset($user_data['team_id']) ? $user_data['team_id'] : '1'; ?>  where you will find your Team members.
                     <br>Complete Task 1 to help your colleagues get to know you better!
-                </div>
+                    </p>
+                    
+    </div>
+
+    </section>
+
+
+        <section class="flex flex-row w-full my-5">
+                
                 
 
-                <div class="flex flex-row w-full mt-10 space-x-12" >
-                <div id="imageContainer" class="image-container">
-                        <img src="./uploads/user/profile-image/<?= $user_data['avatar'] ?? 'dummy.webp' ?>" alt="Image" class="rounded-lg w-72 h-72">
-                        <input type="file" id="profileImageInput" class="hidden" accept="image/*">
-                </div>
-                    <div class="flex flex-col justify-center gap-5 m-2">
-                        <input type="text" name="objective" class="flex p-2 text-center text-xl py-4  bg-white rounded-full w-[540px]" placeholder="One adjective that best describes you">
-                        <input type="text" name="nickName" class="flex p-2 text-center text-xl py-4 bg-white rounded-full w-[540px]" placeholder="The nickname by which people fondly refer to you">
-                        
-                        <div id="familyImage" class="file-input-container flex p-2 text-center text-xl py-4 bg-white rounded-full w-[540px]">
-                                <input type="file" name="familyPic" class="file-input" id="fileInput" />
-                               <span class="w-full text-center text-gray-400">Upload a family picture</span> 
-                        </div>
+                  <div id="imageContainer" class="image-container relative flex flex-col items-center w-full">
+                  <img src="./uploads/user/profile-image/<?=empty( $user_data['avatar'])?'dummy.webp':$user_data['avatar'] ?>" alt="Image" class="rounded-lg w-72 h-72">
+                    <input type="file" id="profileImageInput" class="hidden" accept="image/*">
+
+                    <?php if( empty( $user_data['avatar']) ): ?>
+                    <div class="flex relative items-center  -top-4 justify-center cursor-pointer text-md p-2 py-4 space-x-1 f font-arial bg-white w-[80%] rounded-full  ">
+                        <span>Upload your picture</span> <img class="rounded-full ml-5 w-[22%]" src="./dist/images/upload.png" class=""/>
                     </div>
+                    <?php endif; ?>
+                  </div>
+                    <div class="flex flex-col justify-center gap-5 m-2">
+
+                       <div class="relative">
+
+                         <input type="text" name="objective" class="flex p-2 text-center text-xl py-4  bg-white rounded-full w-[540px]" placeholder="One adjective that best describes you">
+                         <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
+                              Max 20 letters
+                          </span>
+                        </div>
+
+                        <div class="relative">
+                            <input type="text" name="nickName" class="flex p-2 text-center text-xl py-4 bg-white rounded-full w-[540px]" placeholder="The nickname by which people fondly refer to you">
+                            <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
+                              Max 20 letters
+                             </span>
+                      </div>                         
+                        <div id="familyImage" class="file-input-container relative flex p-2 text-center text-xl py-4 bg-white rounded-full w-[540px]">
+                                <input type="file" name="familyPic" class="file-input" id="fileInput" />
+                               <span class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span> 
+                               <span class=" absolute text-xs  text-gray-400 bottom-2 right-[50%] font-arial font-bold ">
+                                    Format:jpeg. Max size 5 mb
+                                </span>
+                        </div>
+                      </div>
+                      <div class="relative w-full">
+    <span class="absolute top-0 left-0 mb-2 text-lg text-white opacity-50 p-2 rounded">Optimistic</span>
+    <span class="absolute top-1/4 left-1/4 mb-2 text-xl text-white opacity-50 p-2 rounded">Affectionate</span>
+    <span class="absolute top-1/2 left-1/2 mb-2 text-2xl text-white opacity-50 p-2 rounded">Courageous</span>
+    <span class="absolute top-3/4 left-3/4 mb-2 text-3xl text-white opacity-70 p-2 rounded">Brave</span>
+    <span class="absolute top-0 right-0 mb-2 text-4xl text-white opacity-90 p-2 rounded">Adventurous</span>
+    <span class="absolute top-1/4 right-1/4 mb-2 text-5xl text-white opacity-80 p-2 rounded">Dazzling</span>
+    <span class="absolute top-1/2 right-1/2 mb-2 text-6xl text-white opacity-60 p-2 rounded">Beautiful</span>
+    <span class="absolute bottom-0 right-0 mb-2 text-7xl text-white opacity-60 p-2 rounded">Generous</span>
+</div>
                 </div>
-            </div>
            
         </section>
 
-        <section>
-            <h6 class="flex text-justify text-3xl font-semibold m-2 ">
-                Meet Your Team
-            </h6>
+        <section class="">
+    <!-- Accordion Container -->
+    <div class="rounded shadow p-4">
 
+        <!-- Accordion Item 1 -->
+        <div class="mb-4">
+            <!-- Accordion Header -->
+            <button class="w-full text-[2rem] flex items-center space-x-4 text-white text-2xl text-left p-2" onclick="toggleAccordion('accordion1')">
+               <img class="w-[3%] mr-6" src="./dist/images/plus.png" alt=""> Meet Your Team
+            </button>
+            <!-- Accordion Content (Initially Hidden) -->
+            <div id="accordion1" class="accordion-content hidden">
             <div class="flex flex-row sm:flex-wrap justify-center items-center my-10">
                 <?php foreach ($teamMembers as $index => $member): ?>
-                    <div class="flex flex-col m-4 justify-center items-center scroll-m-1">
-                        <img src="./uploads/user/profile-image/<?= empty($member['avatar'])? 'dummy.webp': $member['avatar']?>" class="rounded-lg w-64 h-64">
-                        <div class="flex bg-white rounded-xl w-64 h-12 text-2xl shadow-xl text-center font-semibold justify-center py-2"><?php echo $member['name']; ?></div>
+                    <div class="flex relative flex-col m-4 justify-center items-center scroll-m-1">
+                        <img src="./uploads/user/profile-image/<?= empty($member['avatar'])? 'dummy.webp': $member['avatar']?>" class=" w-64 h-64">
+                        <span class=" absolute -bottom-4 flex bg-white text-black rounded-xl w-64 h-12 text-2xl shadow-xl text-center font-semibold justify-center py-2"><?php echo $member['name']; ?></span>
                     </div>
                 <?php endforeach; ?>
+          </div>
             </div>
+        </div>
 
-        </section>
-             
-
-       
-
-        <section>
-            <h6 class="flex text-justify text-3xl font-semibold m-2 ">
-                Meet Your Team member Family
-            </h6>
-              
-
-        </section>
-        <div class="carousel-container">
+        <!-- Accordion Item 2 -->
+        <div class="mb-4">
+            <!-- Accordion Header -->
+            <button class="w-full text-white flex items-center text-[2rem] text-left p-2" onclick="toggleAccordion('accordion2')">
+            <img class="w-[3%] mr-6" src="./dist/images/plus.png" alt=""> Meet your team members family
+            </button>
+            <!-- Accordion Content (Initially Hidden) -->
+            <div id="accordion2" class="accordion-content hidden">
+            
+            <!-- Carasouel  -->
+            <div id="carousel-container">
+    <div id="carousel" class="slick-carousel h-fit w-fit">
         <?php foreach($familyPictures as $index => $picture): ?>
-                <div class="flex flex-row justify-center content-center">
-                    <div>
-                        <img class="h-2/3" src="./uploads/user/family-image/<?=$picture['file_name']?>" alt="Family Photo">
-                    </div>
-                    <span class="flex bg-white rounded-xl w-64 h-12 text-2xl shadow-xl text-center font-semibold justify-center py-2">
-                        <?=$picture['user_name']?>
-                    </span>
-                </div>
+            <div class="carousel-item">
+              <img src="./uploads/user/family-image/<?=$picture['file_name']?>" alt="<?=$picture['file_name']?>">
+            </div>
         <?php endforeach; ?>
-
+    </div>
+    <div class="flex justify-center mt-4">
+        <button id="prevBtn" class="text-white px-4 py-2 mr-2 cursor-pointer">
+           <img src="./dist/images/left.png" alt="">
+        </button>
+        <button id="nextBtn" class=" text-white px-4 py-2 cursor-pointer">
+        <img src="./dist/images/right.png" alt="">
+        </button>
+    </div>
+</div>
+<!-- Caraouel End -->
 
             </div>
+        </div>
+
+        <!-- Add more accordion items as needed -->
+
+    </div>
+        </section>
+
+
     </main>
 
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    function toggleAccordion(accordionId) {
+        const accordion = document.getElementById(accordionId);
+        accordion.classList.toggle('hidden');
+    }
+</script>
+
+<script>
+    $(document).ready(function(){
+        $('#carousel').slick({
+            slidesToShow: 3,
+            slidesToScroll: 1,
+            prevArrow: $('#prevBtn'),
+            nextArrow: $('#nextBtn'),
+        });
+    });
+</script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
-    <script>
-        // Wait for the document to be ready
-        $(document).ready(function(){
-            // Initialize the Slick Carousel
-            $('.carousel-container').slick({
-  centerMode: true,
-  centerPadding: '80px',
-  slidesToShow: 3,
-  dots:true,
-  responsive: [
-    {
-      breakpoint: 768,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 2
-      }
-    },
-    {
-      breakpoint: 480,
-      settings: {
-        arrows: false,
-        centerMode: true,
-        centerPadding: '40px',
-        slidesToShow: 1
-      }
-    }
-  ]
-}); });
-    </script>
 
 
 </body>
