@@ -40,17 +40,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      
     <style>
         body, html {
-            height: 100%;
-            margin: 1;
+            margin: 0;
         }
         .background-image {
             background-image: url('./dist/images/login-min.gif'); /* Replace with the actual path to your image */
             background-size: cover;
             background-position: center;
             background-repeat: repeat;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
         }
 
         .top-right {
@@ -58,17 +54,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 20px;
         }
     </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="background-image">
-        <div class="flex justify-end items-end p-4"><img src="./dist/images/Cipla_White.png"/></div>
-        <div class="flex text-6xl font-medium md:text-5xl sm:text-5xl sm:mt-40 sm:p-6 p-2 font-arial text-white justify-center ">You are born to do great things</div>
+<body class="h-screen w-screen background-image p-10">
+        <div class="flex justify-end items-end "><img class="w-[10%]" src="./dist/images/Cipla_White.png"/></div>
+        <div class="flex text-2xl font-medium md:text-5xl md:p-6  font-arial text-white justify-center ">You are born to do great things</div>
        
-        <div class="flex text-6xl lg:text-7xl md:6xl sm:6xl p-4 font-arial text-white justify-center items-center">
+        <div class="flex text-6xl lg:text-7xl md:6xl sm:6xl  font-arial text-white justify-center items-center">
                 Welcome to HR Offsite 2024 
         </div>
         
-        <div class="flex p-4 justify-center mb-4 sm:mb-8">
+        <div class="flex justify-center ">
             <div class="flex  bg-yellow-400 h-12 items-center text-black text-5xl md:text-5xl sm:text-4xl font-arial_black p-8 mb-8">
                 #BEYONDTHEHORIZON
             </div>
