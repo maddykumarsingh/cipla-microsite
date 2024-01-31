@@ -241,7 +241,7 @@ if (file) {
     <!-- Slick Carousel CSS -->
      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 </head>
 <body class="h-screen w-screen background-image p-5 lg:p-10 text-white">
     <header class="w-full h-[20%] flex justify-between">
@@ -305,7 +305,7 @@ if (file) {
                                 
                         </div>
 
-                        <div class="hidden lg:block absolute -right-60 bottom-0">
+                        <div class="lg:block absolute -right-60 bottom-0">
                            <button onclick="update()" class="bg-blue-100 cursor-pointer text-black rounded z-50 px-7 py-2">Update</button>
                         </div>
                 <?php endif; ?>
