@@ -367,7 +367,7 @@ if (file) {
             
             <!-- Carasouel  -->
             <div id="carousel-container">
-    <div id="carousel" class="slick-carousel h-fit w-fit">
+    <div id="carousel" class="slick-carousel">
         <?php foreach($familyPictures as $index => $picture): ?>
             <div class="carousel-item">
               <img src="./uploads/user/family-image/<?=$picture['file_name']?>" alt="<?=$picture['file_name']?>">
