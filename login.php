@@ -1,7 +1,6 @@
 <?php
 session_start();
 include_once('./config/database.php');
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
     $email = $_POST['email'];
@@ -30,174 +29,70 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 
 }
-
-
 ?>
 
-
-
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cipla Mircostie | Login </title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,300&display=swap" rel="stylesheet">
-<link href="./dist/css/tailwind.css" rel="stylesheet">
-   <style>
-        body {
-            background: url('./dist/images/LoginBG.png');
+    <title>Cipla Mircostie | Login</title>
+    <script src="https://cdn.tailwindcss.com">
+       
+    </script>
+    <link href="./dist/css/tailwind.css" rel="stylesheet">
+     
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        .background-image {
+            background-image: url('./dist/images/LoginBG.png'); /* Replace with the actual path to your image */
             background-size: cover;
-            background-position-y: bottom;
-            width: 100vw;
-            height: 100vh;
+            background-position: center;
             background-repeat: no-repeat;
-            margin: 0;
-            padding: 0;
-            font-family: 'Open Sans', sans-serif;
-            letter-spacing: 1px;
-        }
-
-        header {
+            height: 100%;
             display: flex;
-            flex-direction: row-reverse;
-            justify-content: end;
-            align-items: center;
-            width: 100%;
-            height: 10%;
+            flex-direction: column;
         }
 
-        main {
-           height: 80%;  
-           width: 100%;
+        .top-right {
+            text-align: right;
+            margin: 20px;
         }
-
-        .header-logo {
-            width: 7.5%;
-            margin-right: 25px;
-        }
-
-        .heading-third{
-            font-size: 3rem;
-            margin: 0;
-        }
-
-        .heading-first{
-            font-size: 5rem;
-            margin: 0;
-        }
-
-        #title-container {
-            color: white; 
-            width: 100%; 
-            text-align: center;
-        }
-
-        .form-input {
-            padding: 5px;
-            width: 100%;
-            text-align: center;
-            margin: 5px 0;
-            border: 0;
-            outline-color: #0055b8;
-            border-radius: 5px;
-            height: 40px;
-        }
-
-        .form-input::placeholder{
-            font-size: large;
-        }
-
-        form{
-             width: 30%;
-        }
-
-        #login-button{
-            font-size: 1.5rem; 
-            background-color:#0055b8; 
-            color: white; 
-            display: flex; 
-            border: 0px; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center;
-            width: 50%;
-            padding: 5px;
-            border-radius: 5px;
-        }
-
-
-        @media only screen and (max-width: 767px){
-           
-
-            .heading-third{
-                    font-size: 1rem;
-            }
-
-            .heading-first {
-                font-size: 3rem;
-            }   
-
-            main {
-                 height: 90%;
-            }
-
-            .form-input {
-                width: 80%;
-            }
-
-            form{
-                width: 80%;
-            }
-
-            .header-logo{
-                width: 18%;
-            }
-        }
-
-
-
-    
-
 
 
     </style>
 </head>
 <body>
-    <header>
-         <img class="header-logo" src="./dist/images/logo.png" alt="">
-    </header>
-    <main>
-        <div class="grid grid-cols-1 gap-10 w-full m-2 justify-center">
-            <div id="title-container">
-               <div class="heading-third justify-center" >You are born to do great things</div>
-               <div class="heading-first">Welcome to HR Offsite 2024</div>
-            </div>
-            <div class="flex justify-center">
-                <div style="text-transform: uppercase; letter-spacing: 3px; font-weight: bold; background-color: #ffd200; width: max-content; padding: 8px 10px; font-size: x-large;">
-                    #beyondthehorizon
-                </div>
-            </div>
-
-   
-            <div class="flex justify-center content-center items-center mt-20 space-y-6">
-               <form method="post" action="login.php">
-                     <div class="flex w-full content-center items-center mt-10 space-y-6">
-                        <input class="form-input" name="email" type="text" placeholder="Enter Email">
-                     </div>
-                     <div>
-                        <input class="form-input" name="password" type="text" placeholder="Enter Passcode">
-                     </div>
-                     <div >
-                        <button class="hover:scale-105 cursor-pointer"  id="login-button">
-                            <span style="text-transform: uppercase;">Login</span> <span style="font-size:small;">to let your great unfold</span>
-                        </button>
-                     </div>
-               </form>
+    <div class="background-image">
+        <div class="top-right text-white text-5xl font-extrabold justify-end mr-10 ">Cipla</div>
+        <div class="flex text-4xl font-medium md:text-5xl sm:text-4xl p-2 font-arial text-white justify-center ">You are born to do great things</div>
+       
+        <div class="flex text-7xl  lg:text-7xl md:6xl sm:5xl p-4 font-arial text-white justify-center items-center">
+                <div class="flex">Welcome to HR Offsite 2024</div> 
+        </div>
+        
+        <div class="flex p-4 justify-center mb-4">
+            <div class="flex  bg-yellow-400 h-12 items-center text-black text-5xl md:text-5xl sm:text-4xl font-arial_black p-8 mb-8">
+                #BEYONDTHEHORIZON
             </div>
         </div>
-     </main>
+        <form method="post" action="login.php" class="flex flex-col">
+            <div class=" flex flex-col">
+                <div class="flex justify-center m-2">
+                    <input type="text" name="email" class="flex p-4 w-[400px] rounded-lg text-lg text-center placeholder:text-2xl " placeholder="Enter Email">
+                </div>
+                <div class="flex p-4 w- justify-center  m-2">
+                    <input type="password" name="password" class="p-4 w-[400px] rounded-lg text-lg text-center placeholder:text-2xl " placeholder="Enter Password">
+                </div>
+                <div class="flex justify-center m-2">
+                    <button class=" flex flex-col font-semibold bg-blue-900 p-2 px-4 text-white text-xl rounded-xl justify-center items-center">
+                        <p class="text-3xl font-arial font-thin">LOGIN</p>
+                        <p class="font-normal font-arial px-4"> to let your greatness unfold</p>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
