@@ -281,7 +281,7 @@ if (file) {
 
                   <?php if(!empty($user_data['nick_name']) ): ?>
                     <div class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full">
-                        <?=$user_data['nick_name']?>
+                        <?=$user_data['adjective'].'_'.$user_data['nick_name']?>
                     </div>
 
                     <div id="familyImage" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full">
@@ -367,7 +367,7 @@ if (file) {
             
             <!-- Carasouel  -->
             <div id="carousel-container">
-    <div id="carousel" class="slick-carousel h-fit w-fit">
+    <div id="carousel" class="slick-carousel">
         <?php foreach($familyPictures as $index => $picture): ?>
             <div class="carousel-item">
               <img src="./uploads/user/family-image/<?=$picture['file_name']?>" alt="<?=$picture['file_name']?>">
@@ -423,13 +423,13 @@ if (file) {
 
     function update(){
       var adjective = document.getElementById('adjective').value;
-      var email = document.getElementById('nickName').value;
+      var nickName = document.getElementById('nickName').value;
       var userId = "<?=$user_id?>"
 
     // Create FormData object
     var formData = new FormData();
-    formData.append('adjective', name);
-    formData.append('nickName', email);
+    formData.append('adjective', adjective);
+    formData.append('nickName', nickName);
     formData.append('user_id', userId);
 
     // Send form data to PHP script using fetch
