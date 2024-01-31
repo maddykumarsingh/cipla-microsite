@@ -281,19 +281,19 @@ if (file) {
 
                   <?php if(!empty($user_data['nick_name']) ): ?>
                     <div class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full">
-                        Brave Nick
+                        <?=$user_data['nick_name']?>
                     </div>
                   <?php else: ?>
 
                     <div class="relative">
-                            <input type="text" name="objective" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="One adjective that best describes you">
+                            <input id="adjective" type="text" name="objective" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="One adjective that best describes you">
                             <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
                                   Max 20 letters
                               </span>
                       </div>
 
                       <div class="relative">
-                          <input type="text" name="nickName" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="The nickname by which people fondly refer to you">
+                          <input id="nickName" type="text" name="nickName" class="p-3 py-5 text-center text-black border-2 border-white   bg-gray-100 rounded-2xl w-full" placeholder="The nickname by which people fondly refer to you">
                           <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
                               Max 20 letters
                           </span>
@@ -305,7 +305,7 @@ if (file) {
                                 
                         </div>
 
-                        <div class="lg:block absolute -right-60 bottom-0">
+                        <div class="lg:block ">
                            <button onclick="update()" class="bg-blue-100 cursor-pointer text-black rounded z-50 px-7 py-2">Update</button>
                         </div>
                 <?php endif; ?>
@@ -411,7 +411,36 @@ if (file) {
             prevArrow: $('#prevBtn'),
             nextArrow: $('#nextBtn'),
         });
+
+      
     });
+
+    function update(){
+      var adjective = document.getElementById('adjective').value;
+      var email = document.getElementById('nickName').value;
+      var userId = "<?=$user_id?>"
+
+    // Create FormData object
+    var formData = new FormData();
+    formData.append('adjective', name);
+    formData.append('nickName', email);
+    formData.append('user_id', userId);
+
+    // Send form data to PHP script using fetch
+    fetch('save_data.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Handle the response from the PHP script
+        console.log(data);
+        window.location.reload();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+    }
 </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
