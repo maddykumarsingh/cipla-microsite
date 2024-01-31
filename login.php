@@ -34,7 +34,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Cipla Mircostie | Login</title>
-    <script src="https://cdn.tailwindcss.com">
        
     </script>
     <link href="./dist/css/tailwind.css" rel="stylesheet">
@@ -45,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             margin: 1;
         }
         .background-image {
-            background-image: url('./dist/images/LoginBG.png'); /* Replace with the actual path to your image */
+            background-image: url('./dist/images/login-min.gif'); /* Replace with the actual path to your image */
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
