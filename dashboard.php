@@ -247,7 +247,7 @@ if (file) {
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="h-screen w-screen background-image p-2 md:p-6">
+<body class="h-screen w-screen background-image p-2 md:p-6 text-white">
     <header class="w-full h-[20%] p-6 flex justify-between">
        <div class="w-1/2 flex justify-start items-center">
            <img class="lg:w-[50%] md:w-[80%]" src="./dist/images/tag.png" alt="">
@@ -272,61 +272,89 @@ if (file) {
     </section>
 
 
-        <section class="flex flex-row  gap-4 p-4">
+        <section class="flex flex-row w-full my-5">
                 
                 
 
-                <div class="flex flex-row w-full mt-10 space-x-12" >
-                  <div id="imageContainer" class="image-container relative flex flex-col items-center">
+                  <div id="imageContainer" class="image-container relative flex flex-col items-center w-full">
                   <img src="./uploads/user/profile-image/<?=empty( $user_data['avatar'])?'dummy.webp':$user_data['avatar'] ?>" alt="Image" class="rounded-lg w-72 h-72">
                     <input type="file" id="profileImageInput" class="hidden" accept="image/*">
-                    <div class="flex text-center justify-center h-14 w-56 cursor-pointer text-md items-center font-medium font-arial bg-white rounded-xl absolute bottom-0 left-1/2 transform -translate-x-1/2 -mt-4">
-                        Upload your picture <img src="./dist/images/upload.png" class="ml-2 w-8"/>
+
+                    <?php if( empty( $user_data['avatar']) ): ?>
+                    <div class="flex relative items-center  -top-4 justify-center cursor-pointer text-md p-2 py-4 space-x-1 f font-arial bg-white w-[80%] rounded-full  ">
+                        <span>Upload your picture</span> <img class="rounded-full ml-5 w-[22%]" src="./dist/images/upload.png" class=""/>
                     </div>
-                </div>
+                    <?php endif; ?>
+                  </div>
                     <div class="flex flex-col justify-center gap-5 m-2">
-                        <input type="text" name="objective" class="flex p-2 text-center text-xl py-4  bg-white rounded-full w-[540px]" placeholder="One adjective that best describes you">
+
+                       <div class="relative">
+
+                         <input type="text" name="objective" class="flex p-2 text-center text-xl py-4  bg-white rounded-full w-[540px]" placeholder="One adjective that best describes you">
+                         <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
+                              Max 20 letters
+                          </span>
+                        </div>
 
                         <div class="relative">
                             <input type="text" name="nickName" class="flex p-2 text-center text-xl py-4 bg-white rounded-full w-[540px]" placeholder="The nickname by which people fondly refer to you">
-                            <div class="absolute top-0 right-0 p-1 mr-2 text-xs font-arial font-extralight text-gray-400">
+                            <span class="absolute text-xs  text-gray-400 top-0 right-6 font-arial font-bold ">
                               Max 20 letters
-                            </div>
+                             </span>
                       </div>                         
-                        <div id="familyImage" class="file-input-container flex p-2 text-center text-xl py-4 bg-white rounded-full w-[540px]">
+                        <div id="familyImage" class="file-input-container relative flex p-2 text-center text-xl py-4 bg-white rounded-full w-[540px]">
                                 <input type="file" name="familyPic" class="file-input" id="fileInput" />
                                <span class="flex w-full text-center justify-center text-gray-400">Upload a family picture<span class="flex justify-end text-right items-end ml-20"><img src="./dist/images/upload.png" class="w-8"/></span> 
+                               <span class=" absolute text-xs  text-gray-400 bottom-2 right-[50%] font-arial font-bold ">
+                                    Format:jpeg. Max size 5 mb
+                                </span>
                         </div>
-                    </div>
+                      </div>
+                      <div class="relative w-full">
+    <span class="absolute top-0 left-0 mb-2 text-lg text-white opacity-10 p-2 rounded">Optimistic</span>
+    <span class="absolute top-1/4 left-1/4 mb-2 text-xl text-white opacity-30 p-2 rounded">Affectionate</span>
+    <span class="absolute top-1/2 left-1/2 mb-2 text-2xl text-white opacity-50 p-2 rounded">Courageous</span>
+    <span class="absolute top-3/4 left-3/4 mb-2 text-3xl text-white opacity-70 p-2 rounded">Brave</span>
+    <span class="absolute top-0 right-0 mb-2 text-4xl text-white opacity-90 p-2 rounded">Adventurous</span>
+    <span class="absolute top-1/4 right-1/4 mb-2 text-5xl text-white opacity-80 p-2 rounded">Dazzling</span>
+    <span class="absolute top-1/2 right-1/2 mb-2 text-6xl text-white opacity-60 p-2 rounded">Beautiful</span>
+    <span class="absolute bottom-0 right-0 mb-2 text-7xl text-white opacity-40 p-2 rounded">Generous</span>
+</div>
                 </div>
-            </div>
            
         </section>
 
-        <section>
-          <div class="flex flex-row justify-between">
-            <h6 class="flex text-justify text-3xl font-semibold m-2 text-white ">
-                Meet Your Team
-            </h6>
-            <button class="flex h-10 w-40 bg-blue-600 text-white justify-center text-center items-center  rounded-lg font-semibold mr-10" onclick="window.location.href='./dashboard.php'">Submit</button>  
-            
-          </div>
+        <section class="">
+    <!-- Accordion Container -->
+    <div class="rounded shadow p-4">
 
-          <div class="flex flex-row sm:flex-wrap justify-center items-center my-10">
+        <!-- Accordion Item 1 -->
+        <div class="mb-4">
+            <!-- Accordion Header -->
+            <button class="w-full text-[2rem] flex items-center space-x-4 text-white text-2xl text-left p-2" onclick="toggleAccordion('accordion1')">
+               <img class="w-[3%] mr-6" src="./dist/images/plus.png" alt=""> Meet Your Team
+            </button>
+            <!-- Accordion Content (Initially Hidden) -->
+            <div id="accordion1" class="accordion-content hidden">
+            <div class="flex flex-row sm:flex-wrap justify-center items-center my-10">
                 <?php foreach ($teamMembers as $index => $member): ?>
                     <div class="flex flex-col m-4 justify-center items-center scroll-m-1">
                         <img src="./uploads/user/profile-image/<?= empty($member['avatar'])? 'dummy.webp': $member['avatar']?>" class="rounded-lg w-64 h-64">
                         <div class="flex bg-white rounded-xl w-64 h-12 text-2xl shadow-xl text-center font-semibold justify-center py-2"><?php echo $member['name']; ?></div>
                     </div>
                 <?php endforeach; ?>
+          </div>
             </div>
+        </div>
 
-        </section>
-        <section>
-            <h6 class="flex text-white text-justify text-3xl font-semibold m-2 ">
-                Meet Your Team member Family
-            </h6>
-
+        <!-- Accordion Item 2 -->
+        <div class="mb-4">
+            <!-- Accordion Header -->
+            <button class="w-full text-white flex items-center text-[2rem] text-left p-2" onclick="toggleAccordion('accordion2')">
+            <img class="w-[3%] mr-6" src="./dist/images/plus.png" alt=""> Meet your team members family
+            </button>
+            <!-- Accordion Content (Initially Hidden) -->
+            <div id="accordion2" class="accordion-content hidden">
             <div id="carousel-container">
     <div id="carousel" class="flex">
 
@@ -335,22 +363,23 @@ if (file) {
             <img class="h-2/3" src="./uploads/user/family-image/<?=$picture['file_name']?>" alt="Family Photo">
         </div>
      <?php endforeach; ?>
+     
       
        
         
     </div>
-</div>
-
-<div class="flex justify-center mt-4">
+    <div class="flex justify-center mt-4">
     <button id="prevBtn" class="bg-blue-500 text-white px-4 py-2 mr-2">Previous</button>
     <button id="nextBtn" class="bg-blue-500 text-white px-4 py-2">Next</button>
 </div>
+</div>
+            </div>
+        </div>
 
+        <!-- Add more accordion items as needed -->
+
+    </div>
         </section>
-       
-
-
-
 
 
     </main>
@@ -379,6 +408,12 @@ if (file) {
             });
         });
     });
+</script>
+<script>
+    function toggleAccordion(accordionId) {
+        const accordion = document.getElementById(accordionId);
+        accordion.classList.toggle('hidden');
+    }
 </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
